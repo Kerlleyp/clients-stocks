@@ -1,5 +1,5 @@
 <?php
-    require_once("conexao.php");
+    require_once("../conexao.php");
 
     $nome = $_POST['nome'];
     $telefone = $_POST['telefone'];
@@ -13,6 +13,6 @@
 
     $stmt->execute();
 
-    header("Location: clientes.php");
+    header("Location: ../cliente.php");
     exit;
 ?>

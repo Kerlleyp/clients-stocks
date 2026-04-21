@@ -20,7 +20,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="compras/processa_compras.php" method="POST">
+    <form action="./compras/processa_compras.php" method="POST">
         <label for="cliente_id">Informe o nome do cliente</label>
         <select name="cliente_id" id="cliente_id">
             <?php foreach($clientes as $cliente): ?>
