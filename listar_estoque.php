@@ -13,17 +13,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php require_once('templates/header.php') ?>
     <!--Mostra os Clientes-->
-    <table border="1">
-        <tr>
-            <td>Nome</td>
-            <td>Marca</td>
-            <td>Descrição</td>
-            <td>Quantidade</td>
-            <td>Preço</td>
-            <td>Ações</td>
+    <table class="table-container">
+        <tr id="color-estoque">
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Ações</th>
         </tr>
 
         <?php foreach($estoques as $estoque): ?>
@@ -34,8 +36,8 @@
                 <td><?= $estoque["quantidade"] ?></td>
                 <td><?= $estoque["preco"] ?></td>
                 <td>
-                    <a href="estoque/editar_estoque.php?id=<?= $estoque['id'] ?>">Editar</a> |
-                    <a href="estoque/excluir_estoque.php?id=<?= $estoque['id'] ?>">Excluir</a>
+                    <a class="btn editar" href="estoque/editar_estoque.php?id=<?= $estoque['id'] ?>">Editar</a>
+                    <a class="btn excluir" href="estoque/excluir_estoque.php?id=<?= $estoque['id'] ?>">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>

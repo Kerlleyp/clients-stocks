@@ -192,6 +192,55 @@ h2 {
     margin-bottom: 55px;
 }
 
+/* LISTA */
+.table-container {
+    width: 90%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-container th {
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.table-container td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.table-container tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn {
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.editar {
+    background-color: #2196F3;
+}
+
+.excluir {
+    background-color: #f44336;
+}
+
+#color-estoque {
+    background-color: #ffa500;
+}
+
+#color-clientes {
+    background-color: #349234;
+}
+
 footer {
     text-align: center;
     padding: 20px;

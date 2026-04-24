@@ -13,15 +13,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php require_once('templates/header.php') ?>
      <!--Mostra os Clientes-->
-    <table border="1">
-        <tr>
-            <td>Nome</td>
-            <td>Telefone</td>
-            <td>Endereço</td>
-            <td>Ações</td>
+    <table class="table-container">
+        <tr id="color-clientes">
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Ações</th>
         </tr>
 
         <?php foreach($clientes as $cliente): ?>
@@ -29,8 +31,10 @@
                 <td><?= $cliente["nome"] ?></td>
                 <td><?= $cliente["telefone"] ?></td>
                 <td><?= $cliente["endereco"] ?></td>
-                <td><a href="clientes/editar_cliente.php?id=<?= $cliente['id'] ?>">Editar</a></td>
-                <td><a href="clientes/excluir_clientes.php?id=<?= $cliente['id'] ?>">Excluir</a></td>
+                <td>
+                    <a class="btn editar" href="clientes/editar_cliente.php?id=<?= $cliente['id'] ?>">Editar</a>
+                    <a class="btn excluir" href="clientes/excluir_clientes.php?id=<?= $cliente['id'] ?>">Excluir</a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>
