@@ -3,6 +3,7 @@
     require_once("conexao.php");
 
     $stmt = $conn->query("SELECT
+        compras.id AS compra_id,
         clientes.nome AS cliente_nome,
         estoque.nome AS produto_nome,
         estoque.preco,
@@ -27,39 +28,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compras por Cliente</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php foreach($compras as $compra): ?>
+    <?php require_once('templates/header.php'); ?>
+    <main>
+        <div class="compras-container">
 
-        <?php if($clienteAtual != $compra['cliente_nome']): ?>
+        <?php 
+        $clienteAtual = null;
+        $totalDaCompra = 0;
+        ?>
 
-            <?php if($clienteAtual !== null): ?>
-                <p><strong>Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?></strong></p>
-                </ul>
+        <?php foreach($compras as $compra): ?>
+
+            <?php if($clienteAtual != $compra['cliente_nome']): ?>
+
+                <?php if($clienteAtual !== null): ?>
+                    </tbody>
+                    </table>
+
+                    <p class="total-cliente">
+                        Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
+                    </p>
+                <?php endif; ?>
+
+                <h2 class="cliente-title"><?= $compra['cliente_nome'] ?></h2>
+
+                <table class="tabela-compras">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php 
+                        $clienteAtual = $compra['cliente_nome'];
+                        $totalDaCompra = 0;
+                    ?>
             <?php endif; ?>
 
-            <h1><?= $compra['cliente_nome'] ?></h1>
-            <ul>
-                <?php 
-                    $clienteAtual = $compra['cliente_nome'];
-                    $totalDaCompra = 0;
-                ?>
+            <?php 
+                $total_produto = (float)$compra['preco'] * (int)$compra['quantidade_total']; 
+                $totalDaCompra += $total_produto;
+            ?>
+
+            <tr>
+                <td><?= $compra['produto_nome'] ?></td>
+                <td><?= $compra['quantidade_total'] ?></td>
+                <td>R$ <?= number_format($total_produto, 2, ',', '.') ?></td>
+                <td>
+                    <a class="btn excluir" href="compras/excluir_compra.php?id=<?= $compra['compra_id'] ?>">Excluir</a>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+
+        <?php if($clienteAtual !== null): ?>
+        </tbody>
+        </table>
+
+        <p class="total-cliente">
+            Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
+        </p>
         <?php endif; ?>
-
-        <?php $total_produto = (float)$compra['preco'] * (int)$compra['quantidade_total']; ?>
-        <?php $totalDaCompra += $total_produto; ?>
-
-        <li>
-            <?= $compra['produto_nome'] ?> - 
-            <?= $compra['quantidade_total'] ?> - 
-            R$ <?= number_format($total_produto, 2, ',', '.') ?>
-        </li>
-
-    <?php endforeach; ?>
-
-    <?php if($clienteAtual !== null): ?>
-        <p><strong>Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?></strong></p>
-        </ul>
-    <?php endif; ?>
+    </main>
+    <?php require_once('templates/footer.php'); ?>
+</div>
 </body>
 </html>

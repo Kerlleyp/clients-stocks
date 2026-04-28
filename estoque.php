@@ -8,8 +8,8 @@
 </head>
 <body>
     <?php require_once('templates/header.php') ?>
-    <div class="register-container">
-        <div class="register">
+    <div class="main-container">
+        <div class="body-card">
             <h2>Registrar Produtos !</h2>
             <form action="estoque/processa_estoque.php" method="POST">
                 <input type="text" name="nome" placeholder="Produto" required>
@@ -21,5 +21,6 @@
             </form>
         </div>
     </div>
+    <?php require_once('templates/footer.php'); ?>
 </body>
 </html>

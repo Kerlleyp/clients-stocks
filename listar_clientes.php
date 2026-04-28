@@ -17,26 +17,29 @@
 </head>
 <body>
     <?php require_once('templates/header.php') ?>
-     <!--Mostra os Clientes-->
-    <table class="table-container">
-        <tr id="color-clientes">
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Endereço</th>
-            <th>Ações</th>
-        </tr>
-
-        <?php foreach($clientes as $cliente): ?>
-            <tr>
-                <td><?= $cliente["nome"] ?></td>
-                <td><?= $cliente["telefone"] ?></td>
-                <td><?= $cliente["endereco"] ?></td>
-                <td>
-                    <a class="btn editar" href="clientes/editar_cliente.php?id=<?= $cliente['id'] ?>">Editar</a>
-                    <a class="btn excluir" href="clientes/excluir_clientes.php?id=<?= $cliente['id'] ?>">Excluir</a>
-                </td>
+    <main>
+         <!--Mostra os Clientes-->
+        <table class="table-container">
+            <tr id="color-clientes">
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+                <th>Ações</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
+
+            <?php foreach($clientes as $cliente): ?>
+                <tr>
+                    <td><?= $cliente["nome"] ?></td>
+                    <td><?= $cliente["telefone"] ?></td>
+                    <td><?= $cliente["endereco"] ?></td>
+                    <td>
+                        <a class="btn editar" href="clientes/editar_cliente.php?id=<?= $cliente['id'] ?>">Editar</a>
+                        <a class="btn excluir" href="clientes/excluir_clientes.php?id=<?= $cliente['id'] ?>">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </main>
+    <?php require_once('templates/footer.php'); ?>
 </body>
 </html>

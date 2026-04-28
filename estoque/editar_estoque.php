@@ -33,8 +33,8 @@
             </nav>
         </div>
     </header>
-    <div class="register-container">
-        <div class="register">
+    <div class="main-container">
+        <div class="body-card">
             <h2>Editar Produto !</h2>
             <form action="update_estoque.php" method="POST">
                 <input type="hidden" name="id" value="<?= $estoques['id'] ?>">
@@ -52,5 +52,6 @@
             </form>
         </div>
     </div>
+    <?php require_once('templates/footer.php'); ?>
 </body>
 </html>

@@ -17,30 +17,33 @@
 </head>
 <body>
     <?php require_once('templates/header.php') ?>
-    <!--Mostra os Clientes-->
-    <table class="table-container">
-        <tr id="color-estoque">
-            <th>Nome</th>
-            <th>Marca</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Preço</th>
-            <th>Ações</th>
-        </tr>
-
-        <?php foreach($estoques as $estoque): ?>
-            <tr>
-                <td><?= $estoque["nome"] ?></td>
-                <td><?= $estoque["marca"] ?></td>
-                <td><?= $estoque["descricao"] ?></td>
-                <td><?= $estoque["quantidade"] ?></td>
-                <td><?= $estoque["preco"] ?></td>
-                <td>
-                    <a class="btn editar" href="estoque/editar_estoque.php?id=<?= $estoque['id'] ?>">Editar</a>
-                    <a class="btn excluir" href="estoque/excluir_estoque.php?id=<?= $estoque['id'] ?>">Excluir</a>
-                </td>
+    <main>
+        <!--Mostra os Clientes-->
+        <table class="table-container">
+            <tr id="color-estoque">
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Ações</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
+
+            <?php foreach($estoques as $estoque): ?>
+                <tr>
+                    <td><?= $estoque["nome"] ?></td>
+                    <td><?= $estoque["marca"] ?></td>
+                    <td><?= $estoque["descricao"] ?></td>
+                    <td><?= $estoque["quantidade"] ?></td>
+                    <td><?= $estoque["preco"] ?></td>
+                    <td>
+                        <a class="btn editar" href="estoque/editar_estoque.php?id=<?= $estoque['id'] ?>">Editar</a>
+                        <a class="btn excluir" href="estoque/excluir_estoque.php?id=<?= $estoque['id'] ?>">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </main>
+    <?php require_once('templates/footer.php'); ?>
 </body>
 </html>
