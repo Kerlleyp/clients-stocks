@@ -16,7 +16,7 @@
                 <input type="text" name="marca" placeholder="Marca" required>
                 <input type="text" name="quantidade" placeholder="Quantidade">
                 <input type="number" name="preco" placeholder="preço">
-                <textarea name="descricao" rows="4" cols="63"></textarea>
+                <textarea name="descricao" rows="4" cols="63" placeholder="Descrição"></textarea>
                 <button type="submit">Cadastrar</button>
             </form>
         </div>

@@ -29,8 +29,8 @@
                 <div class="menu">
                     <span>Relatorio</span>
                     <div class="sub_links">
-                        <a href="relatorio_estoque.php">Estoque baixo</a>
-                        <a href="vendas_produtos.php">Produtos mais vendidos</a>
+                        <a href="relatorio_estoque.php">⚠️ Estoque baixo</a>
+                        <a href="vendas_produtos.php">📈 Mais vendidos</a>
                     </div>
                 </div>
             </nav>
