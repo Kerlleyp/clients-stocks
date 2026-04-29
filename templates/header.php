@@ -26,7 +26,13 @@
                         <a href="lista_compras.php">📋 Historico de compras</a>
                     </div>
                 </div>
-                <a href="relatorios.php">Contato</a>
+                <div class="menu">
+                    <span>Relatorio</span>
+                    <div class="sub_links">
+                        <a href="relatorio_estoque.php">Estoque baixo</a>
+                        <a href="vendas_produtos.php">Produtos mais vendidos</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
