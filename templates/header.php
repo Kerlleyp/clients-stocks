@@ -2,7 +2,7 @@
     <div class="page">
         <header>
             <div class="nav-container">
-            <h1 class="title">Sistema de Vendas</h1>
+            <h1 class="title">Sistema de Vendas e Cadastro</h1>
             <nav>
                 <a href="index.php">Home</a>
                 <div class="menu">
