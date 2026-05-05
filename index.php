@@ -41,10 +41,10 @@
         <div class="cards">
             <img src="img/relatorios.png" alt="Relatorios">
             <h2 class="sub-title">Relatórios</h2>
-           <div class="btn-container">
-                <a href="cadastrar_cliente.php" class="btn-card" id="report">Estoque Baixo</a>
-                <a href="cadastrar_cliente.php" class="btn-card" id="report">Produtos mais Vendidos</a>
-           </div>
+            <div class="btn-container">
+                <a href="relatorio_estoque_baixo.php" class="btn-card" id="report">Estoque Baixo</a>
+                <a href="relatorio_vendidos.php" class="btn-card" id="report">Produtos mais Vendidos</a>
+            </div>
         </div>
     </div>
     <?php require_once('templates/footer.php'); ?>

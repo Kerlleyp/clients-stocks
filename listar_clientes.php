@@ -1,5 +1,5 @@
 <?php
-    require_once("conexao.php");
+    require_once("db/conexao.php");
 
     $stmt = $conn->query("SELECT * FROM clientes");
 

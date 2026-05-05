@@ -1,6 +1,6 @@
 <?php
 
-    require_once("conexao.php");
+    require_once("db/conexao.php");
 
     $stmtEstoque = $conn->query("SELECT * FROM estoque");
 

@@ -1,6 +1,6 @@
 <?php
 
-    require_once("../conexao.php");
+    require_once("../db/conexao.php");
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];

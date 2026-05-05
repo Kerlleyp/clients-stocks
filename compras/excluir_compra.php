@@ -1,8 +1,6 @@
-<?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+<?php   
 
-require_once("../conexao.php");
+    require_once("../db/conexao.php");
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];

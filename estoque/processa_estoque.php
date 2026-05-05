@@ -1,5 +1,5 @@
 <?php
-    require_once("../conexao.php");
+    require_once("../db/conexao.php");
 
     $nome = $_POST['nome'];
     $marca = $_POST['marca'];

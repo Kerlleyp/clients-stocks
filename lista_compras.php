@@ -1,6 +1,6 @@
 <?php
 
-    require_once("conexao.php");
+    require_once("db/conexao.php");
 
     $stmt = $conn->query("SELECT
         compras.id AS compra_id,
