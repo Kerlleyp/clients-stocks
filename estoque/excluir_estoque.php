@@ -10,5 +10,5 @@
         $stmt->execute();
     }
 
-    header("Location: ../estoque.php");
+    header("Location: ../listar_estoque.php");
     exit;

@@ -35,7 +35,7 @@
                     <td><?= $estoque["marca"] ?></td>
                     <td><?= $estoque["descricao"] ?></td>
                     <td><?= $estoque["quantidade"] ?></td>
-                    <td><?= $estoque["preco"] ?></td>
+                    <td><?= 'R$ ' . number_format($estoque["preco"], 2, ',', '.') ?></td>
                     <td>
                         <a class="btn editar" href="estoque/editar_estoque.php?id=<?= $estoque['id'] ?>">Editar</a>
                         <a class="btn excluir" href="estoque/excluir_estoque.php?id=<?= $estoque['id'] ?>">Excluir</a>

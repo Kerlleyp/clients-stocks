@@ -30,7 +30,7 @@
                     <span>Relatorio</span>
                     <div class="sub_links">
                         <a href="relatorio_estoque_baixo.php">⚠️ Estoque baixo</a>
-                        <a href="vendas_produtos.php">📈 Mais vendidos</a>
+                        <a href="relatorio_vendidos.php">📈 Mais vendidos</a>
                     </div>
                 </div>
             </nav>
