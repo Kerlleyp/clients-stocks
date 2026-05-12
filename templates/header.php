@@ -1,3 +1,9 @@
+<?php
+
+    session_start();
+
+?>
+
 <body>
     <div class="page">
         <header>

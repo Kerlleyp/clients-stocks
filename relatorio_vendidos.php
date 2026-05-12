@@ -21,7 +21,7 @@
        <main>
         <!--Mostra os Produtos em Baixa-->
         <table class="table-container">
-            <tr id="color-estoque">
+            <tr class="color-relatorio">
                 <th>Nome</th>
                 <th>Marca</th>
                 <th>Descrição</th>
@@ -30,7 +30,7 @@
             </tr>
 
             <?php foreach($maisVendidos as $maisVendas): ?> 
-                <tr>
+                <tr class="table-cor">
                     <td><?= $maisVendas["nome"] ?></td>
                     <td><?= $maisVendas["marca"] ?></td>
                     <td><?= $maisVendas["descricao"] ?></td>

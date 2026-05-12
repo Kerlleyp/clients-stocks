@@ -28,7 +28,7 @@
             </tr>
 
             <?php foreach($clientes as $cliente): ?>
-                <tr>
+                <tr class="table-cor">
                     <td><?= $cliente["nome"] ?></td>
                     <td><?= $cliente["telefone"] ?></td>
                     <td><?= $cliente["endereco"] ?></td>

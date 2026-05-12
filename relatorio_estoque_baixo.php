@@ -21,7 +21,7 @@
      <main>
         <!--Mostra os Produtos em Baixa-->
         <table class="table-container">
-            <tr id="color-estoque">
+            <tr class="color-relatorio">
                 <th>Nome</th>
                 <th>Marca</th>
                 <th>Descrição</th>
@@ -41,7 +41,7 @@
                         $classe = "baixo";
                     };
                 ?>
-                <tr class="<?= $classe ?>">
+                <tr class="<?= $classe ?> table-cor">
                     <td><?= $baixos["nome"] ?></td>
                     <td><?= $baixos["marca"] ?></td>
                     <td><?= $baixos["descricao"] ?></td>

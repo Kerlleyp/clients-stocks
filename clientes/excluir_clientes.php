@@ -10,5 +10,5 @@
         $stmt->execute();
     }
 
-    header("Location: ../cliente.php");
+    header("Location: ../listar_clientes.php");
     exit;

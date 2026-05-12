@@ -221,7 +221,7 @@ h2 {
     border-left: 1px solid #ddd;
 }
 
-.table-container tr:hover {
+.table-cor:hover {
     background-color: #f1f1f1;
 }
 
@@ -249,6 +249,20 @@ h2 {
     background-color: #349234;
 }
 
+.color-relatorio {
+    background-color: #a413a4;
+}
+
+.success {
+    background-color: #349234;
+    color: #fff;
+    margin: 20px auto;
+    text-align: center;
+    width: 500px;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 10px;
+}
 /* LISTA DE COMPRAS POR CLIENTE */
 
 .compras-container {

@@ -30,7 +30,7 @@
             </tr>
 
             <?php foreach($estoques as $estoque): ?>
-                <tr>
+                <tr class="table-cor">
                     <td><?= $estoque["nome"] ?></td>
                     <td><?= $estoque["marca"] ?></td>
                     <td><?= $estoque["descricao"] ?></td>

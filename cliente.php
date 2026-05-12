@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php require_once('templates/header.php') ?>
+    <?php require_once('templates/header.php'); ?>
+
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="success">
+            <?php 
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+            ?>
+        </div>
+    <?php endif; ?>
     <main>
         <div class="main-container">
             <div class="body-card">
