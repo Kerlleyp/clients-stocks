@@ -8,7 +8,7 @@
         $stmt = $conn->prepare("SELECT * FROM estoque WHERE id = :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-
+        
         $estoques = $stmt->fetch(PDO::FETCH_ASSOC);
     } else {
         header("Location: estoque.php");
@@ -52,6 +52,6 @@
             </form>
         </div>
     </div>
-    <?php require_once('templates/footer.php'); ?>
+    <?php require_once('../templates/footer.php'); ?>
 </body>
 </html>

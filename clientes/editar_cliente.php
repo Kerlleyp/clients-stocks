@@ -1,5 +1,6 @@
 <?php
 
+    session_start();
     require_once("../db/conexao.php");
 
    if (isset($_GET['id'])) {
@@ -11,7 +12,7 @@
 
         $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
     } else {
-        header("Location: cliente.php");
+        header("Location: ../listar_clientes.php");
         exit;
     }
 
@@ -45,6 +46,6 @@
             </form>
         </div>
     </div>
-    <?php require_once('templates/footer.php'); ?>
+    <?php require_once('../templates/footer.php'); ?>
 </body>
 </html>

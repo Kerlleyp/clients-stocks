@@ -3,26 +3,49 @@
     require_once("../db/conexao.php");
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $nome = $_POST['nome'];
-        $telefone = $_POST['telefone'];
-        $endereco = $_POST['endereco'];
 
-        $stmt = $conn->prepare("INSERT INTO clientes (nome, telefone, endereco) VALUES (:nome, :telefone, :endereco)");
+        $nome = trim($_POST['nome']);
+        $telefone = trim($_POST['telefone']);
+        $endereco = trim($_POST['endereco']);
 
-        $stmt->bindParam(":nome", $nome);
-        $stmt->bindParam(":telefone", $telefone);
-        $stmt->bindParam(":endereco", $endereco);
+        // Verifica se os campos estão vazios
+        if(empty($nome) || empty($telefone) || empty($endereco)) {
 
-        $resultado = $stmt->execute();
+            $_SESSION['error'] = "Preencha todos os campos!";
 
-        if($resultado === true) {
-            $_SESSION['success'] = "Cliente cadastrado com sucesso!";
         } else {
-            $_SESSION['error'] = "Erro ao cadastrar cliente!";
+
+            try {
+
+                $stmt = $conn->prepare("
+                    INSERT INTO clientes (nome, telefone, endereco)
+                    VALUES (:nome, :telefone, :endereco)
+                ");
+
+                $stmt->bindParam(":nome", $nome);
+                $stmt->bindParam(":telefone", $telefone);
+                $stmt->bindParam(":endereco", $endereco);
+
+                $resultado = $stmt->execute();
+
+                if($resultado) {
+                    $_SESSION['success'] = "Cliente cadastrado com sucesso!";
+                } else {
+                    $_SESSION['error'] = "Erro ao cadastrar cliente!";
+                }
+
+            } catch(PDOException $e) {
+
+                $_SESSION['error'] = "Erro no banco: " . $e->getMessage();
+
+            }
+
         }
 
     } else {
-        $_SESSION['error'] = "Erro ao cadastrar cliente!";
+
+        $_SESSION['error'] = "Requisição inválida!";
+
     }
 
     header("Location: ../cliente.php");

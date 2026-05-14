@@ -162,7 +162,7 @@ span:hover {
     padding: 30px;
     margin-top: 40px;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
     width: 500px;
 }
 
@@ -255,6 +255,17 @@ h2 {
 
 .success {
     background-color: #349234;
+    color: #fff;
+    margin: 20px auto;
+    text-align: center;
+    width: 500px;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.error {
+    background-color: #b42318;
     color: #fff;
     margin: 20px auto;
     text-align: center;

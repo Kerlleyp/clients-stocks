@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once("../db/conexao.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,7 +17,11 @@
         $stmt->bindParam(":telefone", $telefone);
         $stmt->bindParam(":endereco", $endereco);
 
-        $stmt->execute();
+         if($stmt->execute()) {
+            $_SESSION['success'] = "Cliente Editado com sucesso!";
+        } else {
+            $_SESSION['error'] = "Erro ao Editar cliente!";
+        }
 
         header("Location: ../listar_clientes.php");
         exit;

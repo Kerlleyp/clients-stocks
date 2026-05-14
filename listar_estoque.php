@@ -17,6 +17,23 @@
 </head>
 <body>
     <?php require_once('templates/header.php') ?>
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="success">
+            <?php 
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+            ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if(isset($_SESSION['error'])): ?>
+        <div class="error">
+            <?php 
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+            ?>
+        </div>
+    <?php endif; ?>
     <main>
         <!--Mostra os Clientes-->
         <table class="table-container">
