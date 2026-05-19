@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once("../db/conexao.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,7 +22,11 @@
         $stmt->bindParam(":preco", $preco);
         $stmt->bindParam(":descricao", $descricao);
 
-        $stmt->execute();
+         if($stmt->execute()) {
+            $_SESSION['success'] = "Produto Editado com sucesso!";
+        } else {
+            $_SESSION['error'] = "Erro ao Editar Produto!";
+        }
 
         header("Location: ../listar_estoque.php");
         exit;

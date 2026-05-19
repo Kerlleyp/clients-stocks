@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once("../db/conexao.php");
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,24 +9,24 @@
         $quantidade = $_POST['quantidade'] ?? null;
 
         if(empty($cliente_id)){
-
-            echo "Error: CLIENTE NÃO INFORMADO";
+            $_SESSION['error'] = "CLIENTE NÃO INFORMADO";
+            header("Location: ../compras.php");
             exit;
         }
 
         if(empty($produto_id)){
-
-            echo "Error: PRODUTO NÃO INFORMADO";
+            $_SESSION['error'] = "PRODUTO NÃO INFORMADO";
+            header("Location: ../compras.php");
             exit;
         }
 
         if($quantidade <= 0){
-
-            echo "Error: QUANTIDADE INVALIDA";
+            $_SESSION['error'] = "QUANTIDADE INVÁLIDA";
+            header("Location: ../compras.php");
             exit;
         }
 
-       try {
+        try {
 
             $stmt = $conn->prepare("SELECT * FROM estoque WHERE id = :produto_id");
 
@@ -37,11 +38,14 @@
 
             if(!$produto) {
 
-                echo "Produto não Existe !";
+                $_SESSION['error'] = "Produto não existe!";
+                header("Location: ../compras.php");
                 exit;
 
             } else if($quantidade > $produto["quantidade"]) {
-                echo "Estoque insuficiente";
+
+                $_SESSION['error'] = "Estoque insuficiente!";
+                header("Location: ../compras.php");
                 exit;
             }
 
@@ -49,7 +53,7 @@
             $subtotal = $quantidade * $produto["preco"];
             $total = $subtotal;
 
-           $conn->beginTransaction();
+            $conn->beginTransaction();
 
             $stmtCompra  = $conn->prepare("INSERT INTO compras (cliente_id, total) VALUES (:cliente_id, :total)");
 
@@ -60,7 +64,9 @@
 
             $compra_id = $conn->lastInsertId();
 
-            $stmtItem = $conn->prepare("INSERT INTO itens_compra (compra_id, produto_id, quantidade, preco_unitario, subtotal) VALUES (:compra_id, :produto_id, :quantidade, :preco_unitario, :subtotal)");
+            $stmtItem = $conn->prepare("INSERT INTO itens_compra 
+            (compra_id, produto_id, quantidade, preco_unitario, subtotal) 
+            VALUES (:compra_id, :produto_id, :quantidade, :preco_unitario, :subtotal)");
 
             $stmtItem->bindParam(":compra_id", $compra_id);
             $stmtItem->bindParam(":produto_id", $produto_id);
@@ -72,7 +78,9 @@
 
             $novo_estoque = $produto["quantidade"] - $quantidade;
 
-            $stmtUpdate = $conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE id = :produto_id");
+            $stmtUpdate = $conn->prepare("UPDATE estoque 
+            SET quantidade = :quantidade 
+            WHERE id = :produto_id");
 
             $stmtUpdate->bindParam(":quantidade", $novo_estoque);
             $stmtUpdate->bindParam(":produto_id", $produto_id);
@@ -81,16 +89,26 @@
 
             $conn->commit();
 
+            $_SESSION['success'] = "Compra realizada com sucesso!";
+
             header("Location: ../compras.php");
             exit;
-       } catch(Exception $e) {
+
+        } catch(Exception $e) {
+
             $conn->rollBack();
 
-            echo $e->getMessage();
-       }
+            $_SESSION['error'] = "Erro ao realizar compra!";
+
+            header("Location: ../compras.php");
+            exit;
+        }
+
     } else {
 
-        echo " Error: INFORMAÇÕES IVÁLIDAS";
+        $_SESSION['error'] = "INFORMAÇÕES INVÁLIDAS";
+
+        header("Location: ../compras.php");
+        exit;
     }
-    
 ?>

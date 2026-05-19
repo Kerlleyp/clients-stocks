@@ -17,7 +17,7 @@
         $stmt->bindParam(":telefone", $telefone);
         $stmt->bindParam(":endereco", $endereco);
 
-         if($stmt->execute()) {
+        if($stmt->execute()) {
             $_SESSION['success'] = "Cliente Editado com sucesso!";
         } else {
             $_SESSION['error'] = "Erro ao Editar cliente!";
