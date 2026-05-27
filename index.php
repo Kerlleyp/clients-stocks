@@ -14,7 +14,7 @@
         <p>Bem-Vindo ao sistema de gerenciamento de vendas e Clientes !</p>
     </div>
     <div class="card-container">
-        <div class="cards">
+        <div class="cards" id="card-cliente">
             <img src="img/clientes.png" alt="Clientes">
             <h2 class="sub-title">Clientes</h2>
            <div class="btn-container">
@@ -22,7 +22,7 @@
                 <a href="listar_clientes.php" class="btn-card" id="customers">Listar Clientes</a>
            </div>
         </div>
-        <div class="cards">
+        <div class="cards" id="card-produto">
             <img src="img/produto.png" alt="Produtos">
             <h2 class="sub-title">Produtos</h2>
             <div class="btn-container">
@@ -30,7 +30,7 @@
                 <a href="listar_estoque.php" class="btn-card" id="products">Listar Produto</a>
             </div>
         </div>
-        <div class="cards">
+        <div class="cards" id="card-compras">
             <img src="img/compras.png" alt="Compras">
             <h2 class="sub-title">Compras</h2>
             <div class="btn-container">
@@ -38,7 +38,7 @@
                 <a href="lista_compras.php" class="btn-card" id="shopping">Historico de Compras</a>
             </div>
         </div>
-        <div class="cards">
+        <div class="cards" id="card-relatorio">
             <img src="img/relatorios.png" alt="Relatorios">
             <h2 class="sub-title">Relatórios</h2>
             <div class="btn-container">
