@@ -69,21 +69,6 @@ nav a:hover {
     border-radius: 15px;
 }
 
-#card-cliente {
-    background-color: #ccffcc;
-}
-
-#card-produto {
-    background-color: #ffc3ad;
-}
-
-#card-compras {
-    background-color: #8fc7f5;
-}
-
-#card-relatorio {
-    background-color: #f58ff5;
-}
 
 .cards img {
     width: 350px;
