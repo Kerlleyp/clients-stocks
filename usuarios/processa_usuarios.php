@@ -17,13 +17,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         } else if($password != $confirmPassword) {
 
-           $_SESSION['error'] = "Senha Incorretas!";
-           header("Location: ../cadastrar.php");
-        exit;
+            $_SESSION['error'] = "Senha Incorretas!";
+            header("Location: ../cadastrar.php");
+            exit;
         }
 
         try {
-                $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
+                $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = :email");
 
                 $stmt->bindParam(":email", $email);
 
