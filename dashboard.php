@@ -21,6 +21,7 @@ if(!isset($_SESSION['usuario_id'])) {
     <div class="paragrafo">
         <p>Bem-Vindo ao sistema de gerenciamento de vendas e Clientes !</p>
         <p><?= $_SESSION['usuario_nome'] ?></p>
+        <p> <a href="logout.php" class="btn-card" id="customers">Sair</a></p>
     </div>
     <div class="card-container">
         <div class="cards" id="card-cliente">
