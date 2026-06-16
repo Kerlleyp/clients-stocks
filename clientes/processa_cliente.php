@@ -7,6 +7,7 @@
         $nome = trim($_POST['nome']);
         $telefone = trim($_POST['telefone']);
         $endereco = trim($_POST['endereco']);
+        $usuario_id = $_SESSION['usuario_id'];
 
         // Verifica se os campos estão vazios
         if(empty($nome) || empty($telefone) || empty($endereco)) {
@@ -18,13 +19,14 @@
             try {
 
                 $stmt = $conn->prepare("
-                    INSERT INTO clientes (nome, telefone, endereco)
-                    VALUES (:nome, :telefone, :endereco)
+                    INSERT INTO clientes (nome, telefone, endereco, usuario_id)
+                    VALUES (:nome, :telefone, :endereco, :usuario_id)
                 ");
 
                 $stmt->bindParam(":nome", $nome);
                 $stmt->bindParam(":telefone", $telefone);
                 $stmt->bindParam(":endereco", $endereco);
+                $stmt->bindParam(":usuario_id", $usuario_id);
 
                 $resultado = $stmt->execute();
 

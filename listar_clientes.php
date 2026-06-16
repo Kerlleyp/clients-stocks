@@ -1,7 +1,17 @@
 <?php
+    session_start();
     require_once("db/conexao.php");
 
-    $stmt = $conn->query("SELECT * FROM clientes");
+    $usuario_id = $_SESSION['usuario_id'];
+
+    $stmt = $conn->prepare("
+        SELECT * FROM clientes
+        WHERE usuario_id = :usuario_id
+    ");
+
+    $stmt->bindParam(":usuario_id", $usuario_id);
+
+    $stmt->execute();
 
     $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

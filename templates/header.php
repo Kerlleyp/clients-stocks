@@ -1,8 +1,4 @@
-<?php
 
-    session_start();
-
-?>
 
 <body>
     <div class="page">
@@ -10,7 +6,7 @@
             <div class="nav-container">
             <h1 class="title">Sistema de Vendas e Cadastro</h1>
             <nav>
-                <a href="index.php">Home</a>
+                <a href="dashboard.php">Home</a>
                 <div class="menu">
                     <span>Cliente</span>
                     <div class="sub_links">

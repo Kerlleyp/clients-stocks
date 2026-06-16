@@ -7,6 +7,7 @@
         $cliente_id = $_POST['cliente_id'] ?? null;
         $produto_id = $_POST['produto_id'] ?? null;
         $quantidade = $_POST['quantidade'] ?? null;
+        $usuario_id = $_SESSION['usuario_id'];
 
         if(empty($cliente_id)){
             $_SESSION['error'] = "CLIENTE NÃO INFORMADO";
@@ -55,10 +56,11 @@
 
             $conn->beginTransaction();
 
-            $stmtCompra  = $conn->prepare("INSERT INTO compras (cliente_id, total) VALUES (:cliente_id, :total)");
+            $stmtCompra  = $conn->prepare("INSERT INTO compras (cliente_id, total, usuario_id) VALUES (:cliente_id, :total, :usuario_id)");
 
             $stmtCompra->bindParam(":cliente_id", $cliente_id);
             $stmtCompra->bindParam(":total", $total);
+            $stmtCompra->bindParam(":usuario_id", $usuario_id);
 
             $stmtCompra->execute();
 

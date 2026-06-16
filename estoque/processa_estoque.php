@@ -9,6 +9,7 @@
         $descricao = $_POST['descricao'];
         $quantidade = $_POST['quantidade'];
         $preco = $_POST['preco'];
+        $usuario_id = $_SESSION['usuario_id'];
 
         // Verifica se os campos estão vazios
         if(empty($nome) || empty($marca) || empty($descricao) || empty($quantidade) || empty($preco)) {
@@ -19,13 +20,14 @@
 
             try {
 
-                $stmt = $conn->prepare("INSERT INTO estoque (nome, descricao, quantidade, preco, marca) VALUES (:nome, :descricao, :quantidade, :preco, :marca)");
+                $stmt = $conn->prepare("INSERT INTO estoque (nome, descricao, quantidade, preco, marca, usuario_id) VALUES (:nome, :descricao, :quantidade, :preco, :marca, :usuario_id)");
 
                 $stmt->bindParam(":nome", $nome);
                 $stmt->bindParam(":descricao", $descricao);
                 $stmt->bindParam(":quantidade", $quantidade);
                 $stmt->bindParam(":preco", $preco);
                 $stmt->bindParam(":marca", $marca);
+                $stmt->bindParam(":usuario_id", $usuario_id);
 
                 $resultado = $stmt->execute();
 
