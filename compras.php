@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     require_once("db/conexao.php");
 
     $stmtEstoque = $conn->query("SELECT * FROM estoque");

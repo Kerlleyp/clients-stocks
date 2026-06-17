@@ -1,6 +1,8 @@
 <?php
-
+    session_start();
     require_once("db/conexao.php");
+
+    $usuario_id = $_SESSION['usuario_id'];
 
     $stmt = $conn->query("SELECT
         compras.id AS compra_id,
@@ -13,7 +15,7 @@
         JOIN itens_compra ON itens_compra.compra_id = compras.id
         JOIN estoque ON itens_compra.produto_id = estoque.id
         GROUP BY clientes.nome, estoque.nome, estoque.preco
-        ORDER BY clientes.nome
+        ORDER BY clientes.nome WHERE 
     ");
 
     $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
