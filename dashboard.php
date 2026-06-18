@@ -73,7 +73,7 @@
                 </span>
             </div>
 
-            <h1 class="title">Sistema de Vendas e Cadastro</h1>
+            <h1 class="title">🛒 Sistema de Vendas e Cadastro</h1>
 
             <a href="logout.php" class="btn-sair-header">
                 Sair

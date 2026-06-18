@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <div class="nav-container">
+            <h1 class="title">🛒 Sistema de Vendas</h1>
+        </div>
+    </header>
      <?php if(isset($_SESSION['success'])): ?>
         <div class="success">
             <?php 
@@ -25,15 +30,22 @@
             ?>
         </div>
     <?php endif; ?>
-    <main>
-        <div class="main-container">
+    <main class="page">
+        <div class="main-container" >
             <div class="body-card">
-                <h2>Login!</h2>
+                <h2>Bem-vindo!</h2>
+                <p class="login-texto">
+                    Faça login para acessar o sistema.
+                </p>
                 <form action="usuarios/processa_login.php" method="POST">
-                    <input type="email" name="email" id="email" placeholder="Email" required>
-                    <input type="password" name="password" id="password" placeholder="Senha" required>
-                    <button type="submit">Logar</button>
+                    <input type="email" name="email" id="email" placeholder="📧 Email" required>
+                    <input type="password" name="password" id="password" placeholder="🔒 Senha" required>
+                    <button type="submit">🚪 Logar</button>
                 </form>
+                <p class="separador">ou</p>
+                <a href="cadastrar.php" class="btn-cadastro">
+                    Criar Conta
+                </a>
             </div>
         </div>
     </main>

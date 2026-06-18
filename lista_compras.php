@@ -15,7 +15,7 @@
         JOIN itens_compra ON itens_compra.compra_id = compras.id
         JOIN estoque ON itens_compra.produto_id = estoque.id
         GROUP BY clientes.nome, estoque.nome, estoque.preco
-        ORDER BY clientes.nome WHERE 
+        ORDER BY clientes.nome
     ");
 
     $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <main>
+    <main class="page-list">
         <div class="compras-container">
 
         <?php 
