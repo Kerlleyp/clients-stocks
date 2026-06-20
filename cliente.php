@@ -29,7 +29,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <main>
+    <main class="page">
         <div class="main-container">
             <div class="body-card">
                 <h2>Registrar Clientes !</h2>

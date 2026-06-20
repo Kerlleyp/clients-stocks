@@ -42,7 +42,7 @@
                     <input type="password" name="password" id="password" placeholder="🔒 Senha" required>
                     <button type="submit">🚪 Logar</button>
                 </form>
-                <p class="separador">ou</p>
+                <p class="separador">--------------------- ou ---------------------</p>
                 <a href="cadastrar.php" class="btn-cadastro">
                     Criar Conta
                 </a>

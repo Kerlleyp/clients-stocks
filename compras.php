@@ -2,9 +2,14 @@
     session_start();
     require_once("db/conexao.php");
 
-    $stmtEstoque = $conn->query("SELECT * FROM estoque");
+    $usuario_id = $_SESSION["usuario_id"];
 
-    $stmtClientes = $conn->query("SELECT * FROM clientes");
+    $stmtEstoque = $conn->prepare("SELECT * FROM estoque WHERE usuario_id = :usuario_id");
+
+    $stmtClientes = $conn->prepare("SELECT * FROM clientes WHERE usuario_id = :usuario_id");
+
+    $stmtEstoque->execute([':usuario_id' => $usuario_id]);
+    $stmtClientes->execute([':usuario_id' => $usuario_id]);
 
     $estoques = $stmtEstoque->fetchAll(PDO::FETCH_ASSOC);
 

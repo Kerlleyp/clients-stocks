@@ -44,7 +44,8 @@
             ?>
         </div>
     <?php endif; ?>
-    <main>
+    <main  class="page-list">
+        <h2 class="title-list">👥Clientes</h2>
          <!--Mostra os Clientes-->
         <table class="table-container">
             <tr id="color-clientes">

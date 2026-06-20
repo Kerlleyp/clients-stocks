@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php require_once('templates/header.php'); ?>
-    <main>
+    <header>
+        <div class="nav-container">
+            <h1 class="title">🛒 Sistema de Vendas</h1>
+             <a href="logout.php" class="btn-sair-header">
+                Entrar
+            </a>
+        </div>
+    </header>
+    <main class="page">
         <div class="main-container">
             <div class="body-card">
                 <h2>Cadastrar Usuario !</h2>

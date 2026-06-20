@@ -4,7 +4,7 @@
 
     $usuario_id = $_SESSION['usuario_id'];
 
-    $stmt = $conn->query("SELECT
+    $stmt = $conn->prepare("SELECT
         compras.id AS compra_id,
         clientes.nome AS cliente_nome,
         estoque.nome AS produto_nome,
@@ -14,9 +14,14 @@
         JOIN clientes ON compras.cliente_id = clientes.id
         JOIN itens_compra ON itens_compra.compra_id = compras.id
         JOIN estoque ON itens_compra.produto_id = estoque.id
-        GROUP BY clientes.nome, estoque.nome, estoque.preco
+        WHERE estoque.usuario_id = :usuario_id
+        GROUP BY compras.id, clientes.nome, estoque.nome, estoque.preco
         ORDER BY clientes.nome
     ");
+
+    $stmt->execute([
+        ':usuario_id' => $usuario_id
+    ]);
 
     $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -51,7 +56,8 @@
             ?>
         </div>
     <?php endif; ?>
-    <main class="page-list">
+    <main >
+        <h2 class="title-list">🛒Compras</h2>
         <div class="compras-container">
 
         <?php 
@@ -115,8 +121,8 @@
             Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
         </p>
         <?php endif; ?>
+        </div>
     </main>
     <?php require_once('templates/footer.php'); ?>
-</div>
 </body>
 </html>

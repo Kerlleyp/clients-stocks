@@ -1,8 +1,12 @@
 <?php
-
+    session_start();
     require_once("db/conexao.php");
 
-    $stmt = $conn->query('SELECT * FROM estoque WHERE quantidade <= 10 ORDER BY quantidade ASC');
+    $usuario = $_SESSION["usuario_id"];
+
+    $stmt = $conn->prepare("SELECT * FROM estoque WHERE usuario_id = :usuario_id AND quantidade <= 10 ORDER BY quantidade ASC");
+    
+    $stmt->execute([':usuario_id' => $usuario]);
 
     $baixo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -18,7 +22,8 @@
 </head>
 <body>
     <?php require_once('templates/header.php'); ?>
-     <main>
+     <main class="page-list">
+        <h2 class="title-list">📊 Relatórios</h2>
         <!--Mostra os Produtos em Baixa-->
         <table class="table-container">
             <tr class="color-relatorio">
