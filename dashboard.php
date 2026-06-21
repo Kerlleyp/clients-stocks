@@ -68,9 +68,10 @@
         <div class="nav-container">
 
             <div class="user-area">
-                <span class="user-name">
-                    <?= $_SESSION['usuario_nome'] ?>
-                </span>
+                <a href="perfil.php" class="user-link">
+                    <span class="user-avatar"><?= mb_substr($_SESSION['usuario_nome'], 0, 1) ?></span>
+                    <span class="user-name"><?= $_SESSION['usuario_nome'] ?></span>
+                </a>
             </div>
 
             <h1 class="title">🛒 Sistema de Vendas e Cadastro</h1>
@@ -78,9 +79,9 @@
             <a href="logout.php" class="btn-sair-header">
                 Sair
             </a>
-
         </div>
     </header>
+
    <div class="paragrafo">
         <h2>Olá, <span class="usuario"><?= $_SESSION['usuario_nome'] ?></span> 👋</h2>
     </div>

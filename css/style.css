@@ -31,16 +31,16 @@ header {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between; 
     padding: 0 30px;
+    width: 100%;
 }
 
 nav {
     margin-top: 0; 
-    margin-right: 90px;
     display: flex;
-    gap: 15px;
+    gap: 2px;
 }
 
 nav a {
@@ -55,9 +55,43 @@ nav a:hover {
 }
 
 .title {
-    flex: 1;
     text-align: center;
     margin: 0;
+    font-size: 24px; 
+}
+
+/* estilização da área do usuário */
+.user-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.user-link:hover .user-name {
+    color: #1abc9c; 
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #1abc9c; 
+    color: #fff;
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.user-name {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .paragrafo {
@@ -89,16 +123,21 @@ nav a:hover {
 }
 
 .btn-sair-header {
-    background-color: #e74c3c;
+   background-color: #e74c3c;
     color: #fff;
-    padding: 8px 15px;
-    border-radius: 6px;
+    padding: 6px 18px; 
+    border-radius: 20px;
     font-weight: bold;
+    font-size: 14px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
     transition: 0.3s;
+    margin-left: 25px;
 }
 
 .btn-sair-header:hover {
     background-color: #c0392b;
+    transform: translateY(-1px);
 }
 
 .usuario {
@@ -254,6 +293,7 @@ nav a:hover {
     position: relative;
     display: inline-block;
     color: #1abc9c;
+    cursor: pointer;
 }
 
 .sub_links {
