@@ -57,41 +57,148 @@ nav a:hover {
 .title {
     text-align: center;
     margin: 0;
-    font-size: 24px; 
+    font-size: 40px; 
 }
 
 /* estilização da área do usuário */
-.user-link {
+
+.perfil-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.perfil-topo {
+    margin-bottom: 30px;
+}
+
+.perfil-topo h1 {
+    font-size: 40px;
+    color: #1f3550;
+    margin-bottom: 8px;
+}
+
+.perfil-topo p {
+    font-size: 18px;
+    color: #6b7280;
+}
+
+.perfil-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.card-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    transition: 0.2s;
+    gap: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.user-link:hover .user-name {
-    color: #1abc9c; 
-}
-
-.user-avatar {
-    width: 36px;
-    height: 36px;
-    background-color: #1abc9c; 
-    color: #fff;
-    border-radius: 50%; 
+.card-icone {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #e8f1fb;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 24px;
 }
 
-.user-name {
-    color: #fff;
-    font-weight: bold;
+.card-icone.seguranca {
+    background: #eaf8ef;
+}
+
+.card-header h2 {
+    font-size: 28px;
+    color: #1f3550;
+    margin-bottom: 4px;
+}
+
+.card-header p {
+    color: #6b7280;
     font-size: 16px;
+}
+
+/* GRID DOS CAMPOS */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 20px;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-grupo label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.form-grupo input {
+    width: 100%;
+    height: 56px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 18px;
+    background: #fff;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-grupo input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.info-box {
+    background: #eef6ff;
+    border: 1px solid #bfdcff;
+    color: #2563eb;
+    padding: 16px 18px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.info-sucesso {
+    background: #edfdf2;
+    border-color: #b7e7c3;
+    color: #15803d;
+}
+
+.acoes-form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-perfil {
+    background: #22384f;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 26px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-perfil:hover {
+    background: #1a2d40;
 }
 
 .paragrafo {
@@ -121,6 +228,34 @@ nav a:hover {
     font-weight: bold;
     font-size: 16px;
 }
+
+.user-link {
+    display: flex;         
+    align-items: center;   
+    gap: 15px;             
+    text-decoration: none; 
+}
+
+.user-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #16a085;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ffffff;       
+    flex-shrink: 0;       
+}
+
+.user-name {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
 
 .btn-sair-header {
    background-color: #e74c3c;

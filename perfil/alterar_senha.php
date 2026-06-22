@@ -18,13 +18,13 @@
 
         if (!password_verify($senhaAtual, $usuario["senha"])) {
             $_SESSION['error'] = "Senha atual incorreta!";
-            header("Location: alterar_senha.php");
+            header("Location: ../perfil.php");
             exit;
         }
         
         if ($novaSenha !== $confirmSenha) {
             $_SESSION['error'] = "As novas senhas não conferem!";
-            header("Location: alterar_senha.php");
+            header("Location: ../perfil.php");
             exit;
         }
 
@@ -36,51 +36,8 @@
         $stmt->execute();
 
         $_SESSION['success'] = "Senha alterada com sucesso!";
+
+        header("Location: ../perfil.php");
+        exit;
     }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alterar senha</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <?php require_once('../templates/header.php'); ?>
-
-    <?php if(isset($_SESSION['success'])): ?>
-        <div class="success">
-            <?php 
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
-            ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if(isset($_SESSION['error'])): ?>
-        <div class="error">
-            <?php 
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-            ?>
-        </div>
-    <?php endif; ?>
-
-    <main class="page">
-        <div class="main-container">
-            <div class="body-card">
-                <h2>Alterar senha</h2>
-                <form action="" method="POST">
-                    <input type="password" name="senha_atual" id="senha_atual" placeholder="Senha Atual">
-                    <input type="password" name="nova_senha" id="nova_senha" placeholder="Nova Senha">
-                    <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirmar Senha">
-                    <button type="submit">Atualizar</button>
-                </form>
-            </div>
-        </div>
-    </main>
-    <?php require_once('../templates/footer.php'); ?>
-</body>
-</html>
