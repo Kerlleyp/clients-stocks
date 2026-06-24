@@ -31,13 +31,36 @@
     <?php endif; ?>
     <main class="page">
         <div class="main-container">
-            <div class="body-card">
-                <h2>Registrar Clientes !</h2>
+            <div class="perfil-card">
+                <div class="card-header">
+                    <div class="card-icone">👥</div>
+                    <div>
+                        <h2>Registrar Clientes</h2>
+                        <p>Preencha os dados do cliente para realizar o cadastro no sistema.</p>
+                    </div>
+                </div>
+
                 <form action="./clientes/processa_cliente.php" method="POST">
-                    <input type="text" name="nome" placeholder="Nome">
-                    <input type="text" name="telefone" placeholder="Telefone">
-                    <input type="text" name="endereco" placeholder="Endereço">
-                    <button type="submit">Cadastrar</button>
+                    <div class="form-grid">
+                        <div class="form-grupo">
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="nome" placeholder="Nome">
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" name="telefone" placeholder="Telefone">
+                        </div>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" name="endereco" placeholder="Endereço">
+                    </div>
+
+                    <div class="acoes-form">
+                        <button type="submit" class="btn-fixo">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>

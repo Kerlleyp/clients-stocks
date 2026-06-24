@@ -44,20 +44,20 @@ nav {
 }
 
 nav a {
-    color: #1abc9c;
+    color: #fff;
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
 }
 
 nav a:hover {
-    color: #fff;
+    color: #1abc9c;
 }
 
 .title {
     text-align: center;
     margin: 0;
-    font-size: 40px; 
+    font-size: 30px; 
 }
 
 /* estilização da área do usuário */
@@ -118,6 +118,7 @@ nav a:hover {
 .card-header h2 {
     font-size: 28px;
     color: #1f3550;
+    text-align: left;
     margin-bottom: 4px;
 }
 
@@ -185,7 +186,7 @@ nav a:hover {
     justify-content: flex-end;
 }
 
-.btn-perfil {
+.btn-fixo {
     background: #22384f;
     color: #fff;
     border: none;
@@ -197,7 +198,7 @@ nav a:hover {
     transition: 0.2s;
 }
 
-.btn-perfil:hover {
+.btn-fixo:hover {
     background: #1a2d40;
 }
 
@@ -459,13 +460,10 @@ nav a:hover {
 
 }
 
-.body-card {
-    background: #fff;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    width: 500px;
-    margin: 10px auto;
+textarea {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 15px;
 }
 
 .body-card input,
@@ -517,23 +515,80 @@ h2 {
 
 /* LISTA */
 .table-container {
-    width: 90%;
-    margin: 40px auto;
+    width: 100%;
+    margin: 0;
     border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.topo-tabela {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 28px 28px;
+    flex-wrap: wrap;
+}
+
+.topo-esquerda,
+.topo-direita {
+    display: flex;
+    align-items: center;
+}
+
+.topo-direita input {
+    width: 330px;
+    height: 58px;
+    border: 1px solid #d9dee5;
+    border-radius: 14px;
+    padding: 0 18px;
+    font-size: 16px;
+    color: #334155;
+    outline: none;
+    background-color: #fff;
+}
+
+.topo-direita input:focus {
+    border-color: #16a085;
+    box-shadow: 0 0 0 4px rgba(22, 160, 133, 0.12);
+}
+
+.btn-novo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #1fb8a8, #149d8d);
+    color: #fff;
+    padding: 15px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(20, 157, 141, 0.25);
+    transition: 0.2s ease;
+}
+
+.btn-novo:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
 }
 
 .table-container th {
-    color: white;
-    padding: 12px;
-    text-align: left;
+    color: #fff;
+    padding: 20px 18px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .table-container td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    padding: 22px 18px;
+    border-top: 1px solid #edf0f4;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+    color: #0f2747;
 }
 
 .table-cor:hover {
@@ -541,11 +596,42 @@ h2 {
 }
 
 .btn {
-    padding: 6px 10px;
-    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 12px;
+    border-radius: 8px;
     text-decoration: none;
     color: white;
     font-size: 14px;
+    font-weight: 600;
+    margin-right: 6px;
+}
+
+.user-avatar-list {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #750591;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #ffffff;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.list-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cliente-nome {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1f2937;
 }
 
 .editar {
@@ -561,7 +647,7 @@ h2 {
 }
 
 #color-clientes {
-    background-color: #349234;
+    background: linear-gradient(135deg, #20b2aa, #24b39d);
 }
 
 .color-relatorio {
@@ -592,9 +678,22 @@ h2 {
 
 .title-list {
     font-size: 50px;
-    margin-top: 50px;
-    margin-bottom: 1px;
- 
+    font-weight: 800;
+    color: #0f2747;
+    margin-bottom: 10px;
+}
+
+.title-list i {
+    color: #6d57d9;
+    margin-right: 12px;
+}
+
+.client-card {
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    padding-top: 20px;
 }
 /* LISTA DE COMPRAS POR CLIENTE */
 
@@ -686,9 +785,15 @@ footer {
 }
 
 .page-list {
+    width: 100%;
+    max-width: 1250px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
 
-    display: flex;
-    flex-direction: column;
+.clientes-header {
+    text-align: center;
+    margin-bottom: 35px;
 }
 
 main {

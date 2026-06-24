@@ -24,6 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <?php require_once('templates/header.php') ?>
@@ -46,27 +47,51 @@
     <?php endif; ?>
     <main  class="page-list">
         <h2 class="title-list">👥Clientes</h2>
-         <!--Mostra os Clientes-->
-        <table class="table-container">
-            <tr id="color-clientes">
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Endereço</th>
-                <th>Ações</th>
-            </tr>
+        <p class="separador">Gerencie os clientes cadastrados no sistema</p>
+        <div class="client-card">
+            <div class="topo-tabela">
+                <div class="topo-esquerda">
+                    <a href="clientes/cadastrar_cliente.php" class="btn-novo">
+                        <i class="fa-solid fa-plus"></i> Novo Cliente
+                    </a>
+                </div>
 
-            <?php foreach($clientes as $cliente): ?>
-                <tr class="table-cor">
-                    <td><?= $cliente["nome"] ?></td>
-                    <td><?= $cliente["telefone"] ?></td>
-                    <td><?= $cliente["endereco"] ?></td>
-                    <td>
-                        <a class="btn editar" href="clientes/editar_cliente.php?id=<?= $cliente['id'] ?>">Editar</a>
-                        <a class="btn excluir" href="clientes/excluir_clientes.php?id=<?= $cliente['id'] ?>">Excluir</a>
-                    </td>
+                <div class="topo-direita">
+                    <input type="text" placeholder="Buscar cliente...">
+                </div>
+            </div>
+            <!--Mostra os Clientes-->
+            <table class="table-container">
+                <tr id="color-clientes">
+                    <th><i class="fa-solid fa-user"></i> Nome</th>
+                    <th><i class="fa-solid fa-phone"></i> Telefone</th>
+                    <th><i class="fa-solid fa-location-dot"></i> Endereço</th>
+                    <th><i class="fa-solid fa-gear"></i> Ações</th>
                 </tr>
-            <?php endforeach; ?>
-        </table>
+
+                <?php foreach($clientes as $cliente): ?>
+                    <tr class="table-cor">
+                        <td>
+                            <div class="list-info">
+                                <span class="user-avatar-list">
+                                    <?= mb_strtoupper(mb_substr($cliente["nome"], 0, 1)) ?>
+                                </span>
+
+                                <span class="cliente-nome">
+                                    <?= $cliente["nome"] ?>
+                                </span>
+                            </div>
+                        </td>
+                        <td><?= $cliente["telefone"] ?></td>
+                        <td><?= $cliente["endereco"] ?></td>
+                        <td>
+                            <a class="btn editar" href="clientes/editar_cliente.php?id=<?= $cliente['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                            <a class="btn excluir" href="clientes/excluir_clientes.php?id=<?= $cliente['id'] ?>"><i class="fa-solid fa-trash"></i> Excluir</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
     </main>
     <?php require_once('templates/footer.php'); ?>
 </body>
