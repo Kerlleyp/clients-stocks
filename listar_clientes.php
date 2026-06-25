@@ -46,12 +46,12 @@
         </div>
     <?php endif; ?>
     <main  class="page-list">
-        <h2 class="title-list">👥Clientes</h2>
+        <h2 class="title-list "><i class="fa-solid fa-users title-icon-client"></i> Clientes</h2>
         <p class="separador">Gerencie os clientes cadastrados no sistema</p>
-        <div class="client-card">
+        <div class="list-card">
             <div class="topo-tabela">
                 <div class="topo-esquerda">
-                    <a href="clientes/cadastrar_cliente.php" class="btn-novo">
+                    <a href="cliente.php" class="btn-novo">
                         <i class="fa-solid fa-plus"></i> Novo Cliente
                     </a>
                 </div>
