@@ -30,7 +30,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +40,7 @@
 </head>
 <body>
     <?php require_once('templates/header.php'); ?>
+    
     <?php if(isset($_SESSION['success'])): ?>
         <div class="success">
             <?php 
@@ -57,71 +58,89 @@
             ?>
         </div>
     <?php endif; ?>
-    <main >
+
+    <main class="page-list">
         <h2 class="title-list">🛒Compras</h2>
-        <div class="compras-container">
+        <p class="separador">Gerencie suas compras cadastrados no sistema</p>
+        
+        <div class="list-card">
+            <div class="topo-tabela">
+                <div class="topo-esquerda">
+                    <a href="compras.php" class="btn-novo">
+                        <i class="fa-solid fa-plus"></i> Cadastrar Compras
+                    </a>
+                </div>
 
-        <?php 
-        $clienteAtual = null;
-        $totalDaCompra = 0;
-        ?>
+                <div class="topo-direita">
+                    <input type="text" placeholder="Buscar cliente...">
+                </div>
+            </div> 
 
-        <?php foreach($compras as $compra): ?>
+            <?php 
+                $clienteAtual = null;
+                $totalDaCompra = 0;
+            ?>
 
-            <?php if($clienteAtual != $compra['cliente_nome']): ?>
+            <?php foreach($compras as $compra): ?>
+                <?php if($clienteAtual != $compra['cliente_nome']): ?>
 
-                <?php if($clienteAtual !== null): ?>
-                    </tbody>
-                    </table>
+                    <?php if($clienteAtual !== null): ?>
+                        </tbody>
+                        </table>
+                        <p class="total-cliente">
+                            Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
+                        </p>
+                        <div class="separador">
+                            <span><i class="fa-solid fa-receipt"></i></span>
+                        </div>
+                    <?php endif; ?>
 
-                    <p class="total-cliente">
-                        Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
-                    </p>
-                <?php endif; ?>
-
-                <h2 class="cliente-title"><?= $compra['cliente_nome'] ?></h2>
-
-                <table class="tabela-compras">
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Quantidade</th>
-                            <th>Total</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
+                    <h2 class="cliente-title"><?= $compra['cliente_nome'] ?></h2>
+                    
+                    <table class="table-container">
+                        <thead>
+                            <tr id="color-compras">
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                     <?php 
                         $clienteAtual = $compra['cliente_nome'];
                         $totalDaCompra = 0;
                     ?>
+                <?php endif; ?>
+
+                <?php 
+                    $total_produto = (float)$compra['preco'] * (int)$compra['quantidade_total']; 
+                    $totalDaCompra += $total_produto;
+                ?>
+                
+                <tr>
+                    <td><?= $compra['produto_nome'] ?></td>
+                    <td><?= $compra['quantidade_total'] ?></td>
+                    <td>R$ <?= number_format($total_produto, 2, ',', '.') ?></td>
+                    <td>
+                        <a class="btn excluir" href="compras/excluir_compra.php?id=<?= $compra['compra_id'] ?>">
+                            <i class="fa-solid fa-trash"></i> Excluir
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+
+            <?php if($clienteAtual !== null): ?>
+                </tbody>
+                </table>
+                <p class="total-cliente">
+                    Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
+                </p>
+                <div class="separador">
+                    <span><i class="fa-solid fa-receipt"></i></span>
+                </div>
             <?php endif; ?>
-
-            <?php 
-                $total_produto = (float)$compra['preco'] * (int)$compra['quantidade_total']; 
-                $totalDaCompra += $total_produto;
-            ?>
-
-            <tr>
-                <td><?= $compra['produto_nome'] ?></td>
-                <td><?= $compra['quantidade_total'] ?></td>
-                <td>R$ <?= number_format($total_produto, 2, ',', '.') ?></td>
-                <td>
-                    <a class="btn excluir" href="compras/excluir_compra.php?id=<?= $compra['compra_id'] ?>">Excluir</a>
-                </td>
-            </tr>
-
-        <?php endforeach; ?>
-
-        <?php if($clienteAtual !== null): ?>
-        </tbody>
-        </table>
-
-        <p class="total-cliente">
-            Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
-        </p>
-        <?php endif; ?>
+            
         </div>
     </main>
     <?php require_once('templates/footer.php'); ?>
