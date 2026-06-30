@@ -42,28 +42,35 @@
 </head>
 <body>
     <?php require_once('templates/header.php') ?>
-       <main class="page-list">
-        <h2 class="title-list">📊 Relatórios</h2> 
-        <!--Mostra os Produtos em Baixa-->
-        <table class="table-container">
-            <tr class="color-relatorio">
-                <th>Nome</th>
-                <th>Marca</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-            </tr>
-
-            <?php foreach($maisVendidos as $maisVendas): ?> 
-                <tr class="table-cor">
-                    <td><?= $maisVendas["nome"] ?></td>
-                    <td><?= $maisVendas["marca"] ?></td>
-                    <td><?= $maisVendas["descricao"] ?></td>
-                    <td><?= $maisVendas["total_vendido"] ?></td>
-                    <td><?= 'R$ ' . number_format($maisVendas["preco"], 2, ',', '.') ?></td>
+    <main  class="page-list">
+        <h2 class="title-list">📊 Relatórios</h2>
+        <p class="separador">Visualize os produtos mais vendidos no estoque.</p>
+        <div class="list-card">
+            <div class="topo-tabela">
+                <div class="topo-direita">
+                    <input type="text" placeholder="Buscar Produto...">
+                </div>
+            </div>
+            <!--Mostra os Clientes-->
+            <table class="table-container">
+                <tr class="color-relatorio">
+                    <th><i class="fa-solid fa-box"></i> Nome</th>
+                    <th><i class="fa-solid fa-tags"></i> Marca</th>
+                    <th><i class="fa-solid fa-align-left"></i> Descrição</th>
+                    <th><i class="fa-solid fa-cubes-stacked"></i> Quantidade</th>
+                    <th><i class="fa-solid fa-dollar-sign"></i> Preço</th>
                 </tr>
-            <?php endforeach; ?> 
-        </table>
+                <?php foreach($maisVendidos as $maisVendas): ?> 
+                    <tr class="table-cor">
+                        <td><?= $maisVendas["nome"] ?></td>
+                        <td><?= $maisVendas["marca"] ?></td>
+                        <td><?= $maisVendas["descricao"] ?></td>
+                        <td><?= $maisVendas["total_vendido"] ?></td>
+                        <td><?= 'R$ ' . number_format($maisVendas["preco"], 2, ',', '.') ?></td>
+                    </tr>
+                <?php endforeach; ?> 
+            </table>
+        </div>
     </main>
     <?php require_once('templates/footer.php'); ?>
 </body>

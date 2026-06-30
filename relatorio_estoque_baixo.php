@@ -23,40 +23,46 @@
 </head>
 <body>
     <?php require_once('templates/header.php'); ?>
-     <main class="page-list">
+    <main  class="page-list">
         <h2 class="title-list">📊 Relatórios</h2>
-        <!--Mostra os Produtos em Baixa-->
-        <table class="table-container">
-            <tr class="color-relatorio">
-                <th>Nome</th>
-                <th>Marca</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-                <th>Status</th>
-            </tr>
-
-            <?php foreach($baixo as $baixos): ?> 
-
-                <?php
-                    if($baixos["quantidade"] <= 3) {
-                        $icone = '🔴 Crítico';
-                        $classe = "critico";
-                    } else {
-                        $icone = '🟡 Baixo';
-                        $classe = "baixo";
-                    };
-                ?>
-                <tr class="<?= $classe ?> table-cor">
-                    <td><?= $baixos["nome"] ?></td>
-                    <td><?= $baixos["marca"] ?></td>
-                    <td><?= $baixos["descricao"] ?></td>
-                    <td><?= $baixos["quantidade"] ?></td>
-                    <td><?= 'R$ ' . number_format($baixos["preco"], 2, ',', '.') ?></td>
-                    <td><?= $icone ?></td>
+        <p class="separador">Visualize os produtos com estoque baixo no estoque.</p>
+        <div class="list-card">
+            <div class="topo-tabela">
+                <div class="topo-direita">
+                    <input type="text" placeholder="Buscar Produto...">
+                </div>
+            </div>
+            <!--Mostra os Clientes-->
+            <table class="table-container">
+                <tr class="color-relatorio">
+                    <th><i class="fa-solid fa-box"></i> Nome</th>
+                    <th><i class="fa-solid fa-tags"></i> Marca</th>
+                    <th><i class="fa-solid fa-align-left"></i> Descrição</th>
+                    <th><i class="fa-solid fa-cubes-stacked"></i> Quantidade</th>
+                    <th><i class="fa-solid fa-dollar-sign"></i> Preço</th>
+                    <th><i class="fa-solid fa-circle-check"></i> Status</th>
                 </tr>
-            <?php endforeach; ?> 
-        </table>
+                <?php foreach($baixo as $baixos): ?> 
+                    <?php
+                        if($baixos["quantidade"] <= 3) {
+                            $icone = '🔴 Crítico';
+                            $classe = "critico";
+                        } else {
+                            $icone = '🟡 Baixo';
+                            $classe = "baixo";
+                        };
+                    ?>
+                    <tr class="<?= $classe ?> table-cor">
+                        <td><?= $baixos["nome"] ?></td>
+                        <td><?= $baixos["marca"] ?></td>
+                        <td><?= $baixos["descricao"] ?></td>
+                        <td><?= $baixos["quantidade"] ?></td>
+                        <td><?= 'R$ ' . number_format($baixos["preco"], 2, ',', '.') ?></td>
+                        <td><?= $icone ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
     </main>
     <?php require_once('templates/footer.php'); ?>
 </body>
