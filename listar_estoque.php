@@ -3,17 +3,66 @@
     require_once("db/conexao.php");
 
     $usuario_id = $_SESSION['usuario_id'];
+    $pesquisa = "";
+    $pagina = 1;
+    $limite = 10;
+    $offset = 0;
 
-    $stmt = $conn->prepare("
-        SELECT * FROM estoque
-        WHERE usuario_id = :usuario_id
-    ");
+    if(isset($_GET["pagina"])) {
+        $pagina = intval($_GET["pagina"]);
+    }
 
-    $stmt->bindParam(":usuario_id", $usuario_id);
+    $offset = ($pagina - 1) * $limite;
 
-    $stmt->execute();
+    if(isset($_GET["pesquisa"])) {
+        $pesquisa = trim($_GET["pesquisa"]);
+    }
 
-    $estoques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if($pesquisa === "") {
+
+        $stmt = $conn->prepare(" SELECT * FROM estoque WHERE  usuario_id = :usuario_id LIMIT :limite OFFSET :offset");
+
+        $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM estoque WHERE usuario_id = :usuario_id");
+
+        $stmt->bindParam(":usuario_id", $usuario_id);
+        $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+
+        $stmtTotal->bindParam(":usuario_id", $usuario_id);
+
+        $stmt->execute();
+        $stmtTotal->execute();
+
+        $estoques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } else {
+
+        $stmt = $conn->prepare("SELECT * FROM estoque WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR marca LIKE :pesquisa OR descricao LIKE :pesquisa) LIMIT :limite OFFSET :offset");
+        $pesquisa = '%' . $pesquisa . '%';
+
+        $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM estoque WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR marca LIKE :pesquisa OR descricao LIKE :pesquisa)");
+
+        $stmt->bindParam(":pesquisa", $pesquisa);
+        $stmt->bindParam(":usuario_id", $usuario_id);
+        $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+
+        $stmtTotal->bindParam(":usuario_id", $usuario_id);
+        $stmtTotal->bindParam(":pesquisa", $pesquisa);
+
+        $stmt->execute();
+        $stmtTotal->execute();
+
+        $estoques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    }
+    
+    $totalProdutos = $stmtTotal->fetch(PDO::FETCH_ASSOC);
+    $totalPaginas = ceil($totalProdutos["total"] / $limite);
+
+    if($totalPaginas < 1) {
+        $totalPaginas = 1;
+    }
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +105,9 @@
                 </div>
 
                 <div class="topo-direita">
-                    <input type="text" placeholder="Buscar Produto...">
+                    <form method="get">
+                        <input type="text" name="pesquisa" placeholder="Buscar Produto...">
+                    </form>
                 </div>
             </div>
             <!--Mostra os Clientes-->
@@ -84,9 +135,26 @@
                 </tr>
             <?php endforeach; ?>
             </table>
+            <div class="paginacao">
+                <?php if($pagina > 1): ?>
+                    <a href="?pagina=<?= $pagina - 1 ?>&pesquisa=<?= $pesquisa ?>" class="pagina-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                <?php endif; ?>
+                <?php for($i = 1; $i <= $totalPaginas; $i++): ?>
+                    <a href="?pagina=<?= $i ?>&pesquisa=<?= $pesquisa ?>" 
+                        class="pagina-btn <?= ($pagina == $i) ? 'ativa' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+                <?php if($pagina < $totalPaginas): ?>
+                    <a href="?pagina=<?= $pagina + 1 ?>&pesquisa=<?= $pesquisa ?>" class="pagina-btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
         </div>
-    </main>
-           
+    </main>   
     <?php require_once('templates/footer.php'); ?>
 </body>
 </html>
