@@ -48,6 +48,19 @@
     <main  class="page-list">
         <h2 class="title-list "><i class="fa-solid fa-users title-icon-client"></i> Clientes</h2>
         <p class="separador">Gerencie os clientes cadastrados no sistema</p>
+        
+    <!--Parei aqui-->
+        <div class="dashboard">
+            <div class="card-dashboard">
+                <div class="icone-resumo clientes">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="texto-resumo">
+                    <h2><?= count($clientes) ?></h2>
+                    <span>Clientes cadastrados</span>
+                </div>
+            </div>
+        </div>
         <div class="list-card">
             <div class="topo-tabela">
                 <div class="topo-esquerda">
@@ -57,7 +70,9 @@
                 </div>
 
                 <div class="topo-direita">
-                    <input type="text" placeholder="Buscar cliente...">
+                    <form method="get">
+                        <input type="text" name="pesquisa" placeholder="Buscar Clientes...">
+                    </form>
                 </div>
             </div>
             <!--Mostra os Clientes-->

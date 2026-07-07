@@ -857,6 +857,45 @@ tbody tr {
     margin-right: 6px;
 }
 
+.icone-resumo{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+}
+
+.clientes{
+
+background:#E8F5E9;
+color:#22C55E;
+
+}
+
+.telefone{
+
+background:#E3F2FD;
+color:#3B82F6;
+
+}
+
+.endereco{
+
+background:#FFF8E1;
+color:#F59E0B;
+
+}
+
 .user-avatar-list {
     width: 38px;
     height: 38px;
