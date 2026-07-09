@@ -7,6 +7,7 @@
     $pagina = 1;
     $limite = 10;
     $offset = 0;
+    $totalEstoque = 0;
 
     if(isset($_GET["pagina"])) {
         $pagina = intval($_GET["pagina"]);
@@ -64,6 +65,10 @@
         $totalPaginas = 1;
     }
 
+    foreach($estoques as $produto) {
+        $totalEstoque += $produto['preco'] * $produto['quantidade'];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,6 +101,26 @@
     <main  class="page-list">
         <h2 class="title-list">📦Estoque</h2>
         <p class="separador">Gerencie os produtos cadastrados no sistema.</p>
+        <div class="dashboard">
+            <div class="card-dashboard">
+                <div class="icone-resumo estoques">
+                    <i>📦</i>
+                </div>
+                <div class="texto-resumo">
+                    <h2><?= count($estoques) ?></h2>
+                    <span>Produtos cadastrados</span>
+                </div>
+            </div>
+            <div class="card-dashboard">
+                <div class="icone-resumo estoques">
+                    <i class="fa-solid fa-money-bill financeiro"></i>
+                </div>
+                <div class="texto-resumo">
+                    <h2><?= number_format($totalEstoque, 2, ',', '.') ?></h2>
+                    <span>Valor do estoque</span>
+                </div>
+            </div>
+        </div>
         <div class="list-card">
             <div class="topo-tabela">
                 <div class="topo-esquerda">
@@ -110,7 +135,6 @@
                     </form>
                 </div>
             </div>
-            <!--Mostra os Clientes-->
             <table class="table-container">
                 <tr id="color-estoque">
                    <th><i class="fa-solid fa-box"></i> Nome</th>

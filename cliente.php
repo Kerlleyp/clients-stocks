@@ -60,7 +60,15 @@
                     </div>
 
                     <div class="acoes-form">
-                        <button type="submit" class="btn-fixo">Cadastrar</button>
+                        <a href="listar_clientes.php" class="btn-secundario">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            Clientes
+                        </a>
+
+                        <button type="submit" class="btn-fixo">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Registrar Cliente
+                        </button>
                     </div>
                 </form>
             </div>

@@ -45,30 +45,32 @@
                         <label for="nome">Nome do Produto:</label>
                         <input type="text" name="nome" placeholder="Produto">
                     </div>
-
                     <div class="form-grupo">
                         <label for="marca">Marca:</label>
                         <input type="text" name="marca" placeholder="Marca">
                     </div>
-
                     <div class="form-grupo">
                         <label for="quantidade">Quantidade:</label>
                         <input type="number" name="quantidade" placeholder="Quantidade">
                     </div>
-
                     <div class="form-grupo">
                         <label for="preco">Preço:</label>
                         <input type="number" name="preco" placeholder="preço">
                     </div>
                 </div>
-
                 <div class="form-grupo">
                     <label for="descricao">Descrição:</label>
                     <textarea name="descricao" rows="4" cols="63" placeholder="Descrição"></textarea>
                 </div>
-
                 <div class="acoes-form">
-                    <button type="submit" class="btn-fixo">Cadastrar</button>
+                    <a href="listar_estoque.php" class="btn-secundario">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        Estoque
+                    </a>
+                    <button type="submit" class="btn-fixo">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        Registrar Produto
+                    </button>
                 </div>
             </form>
         </div>

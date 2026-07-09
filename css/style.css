@@ -1235,6 +1235,11 @@ tr:hover {
     font-size: 0.96rem;
 }
 
+.financeiro {
+    background:#F59E0B;
+    color:#fff;
+}
+
 /* BOTÕES */
 .compras-card .acoes-form {
     display: flex;
@@ -1263,6 +1268,7 @@ tr:hover {
 .btn-secundario {
     background: #f1f5f9;
     color: #12345b;
+    margin-right: 10px;
     border: 1px solid #dbe5ef;
 }
 

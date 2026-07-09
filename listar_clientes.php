@@ -3,17 +3,66 @@
     require_once("db/conexao.php");
 
     $usuario_id = $_SESSION['usuario_id'];
+    $pesquisa = "";
+    $pagina = 1;
+    $limite = 10;
+    $offset = 0;
 
-    $stmt = $conn->prepare("
-        SELECT * FROM clientes
-        WHERE usuario_id = :usuario_id
-    ");
+    if(isset($_GET["pagina"])) {
+        $pagina = intval($_GET["pagina"]);
+    }
 
-    $stmt->bindParam(":usuario_id", $usuario_id);
+    $offset = ($pagina - 1) * $limite;
 
-    $stmt->execute();
+    if(isset($_GET["pesquisa"])) {
+        $pesquisa = trim($_GET["pesquisa"]);
+    }
 
-    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if($pesquisa === "") {
+
+        $stmt = $conn->prepare(" SELECT * FROM clientes WHERE  usuario_id = :usuario_id LIMIT :limite OFFSET :offset");
+
+        $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM clientes WHERE usuario_id = :usuario_id");
+
+        $stmt->bindParam(":usuario_id", $usuario_id);
+        $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+
+        $stmtTotal->bindParam(":usuario_id", $usuario_id);
+
+        $stmt->execute();
+        $stmtTotal->execute();
+
+        $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } else {
+
+        $stmt = $conn->prepare("SELECT * FROM clientes WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR telefone LIKE :pesquisa OR endereco LIKE :pesquisa) LIMIT :limite OFFSET :offset");
+        $pesquisa = '%' . $pesquisa . '%';
+
+        $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM clientes WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR telefone LIKE :pesquisa OR endereco LIKE :pesquisa)");
+
+        $stmt->bindParam(":pesquisa", $pesquisa);
+        $stmt->bindParam(":usuario_id", $usuario_id);
+        $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+
+        $stmtTotal->bindParam(":usuario_id", $usuario_id);
+        $stmtTotal->bindParam(":pesquisa", $pesquisa);
+
+        $stmt->execute();
+        $stmtTotal->execute();
+
+        $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    }
+    
+    $totalProdutos = $stmtTotal->fetch(PDO::FETCH_ASSOC);
+    $totalPaginas = ceil($totalProdutos["total"] / $limite);
+
+    if($totalPaginas < 1) {
+        $totalPaginas = 1;
+    }
 
 ?>
 
@@ -48,8 +97,6 @@
     <main  class="page-list">
         <h2 class="title-list "><i class="fa-solid fa-users title-icon-client"></i> Clientes</h2>
         <p class="separador">Gerencie os clientes cadastrados no sistema</p>
-        
-    <!--Parei aqui-->
         <div class="dashboard">
             <div class="card-dashboard">
                 <div class="icone-resumo clientes">
@@ -71,7 +118,7 @@
 
                 <div class="topo-direita">
                     <form method="get">
-                        <input type="text" name="pesquisa" placeholder="Buscar Clientes...">
+                        <input type="text" name="pesquisa" placeholder="Buscar Produto...">
                     </form>
                 </div>
             </div>
