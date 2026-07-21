@@ -7,7 +7,6 @@
     $pagina = 1;
     $limite = 10;
     $offset = 0;
-    $totalEstoque = 0;
 
     if(isset($_GET["pagina"])) {
         $pagina = intval($_GET["pagina"]);
@@ -65,9 +64,12 @@
         $totalPaginas = 1;
     }
 
-    foreach($estoques as $produto) {
-        $totalEstoque += $produto['preco'] * $produto['quantidade'];
-    }
+    $stmtDashboard = $conn->prepare("SELECT  COUNT(*) AS total_produtos, SUM(preco * quantidade) AS valor_estoque, SUM(quantidade) AS quantidade_total FROM estoque WHERE usuario_id = :usuario_id");
+
+    $stmtDashboard->bindParam(":usuario_id", $usuario_id);
+    $stmtDashboard->execute();
+
+    $dashboard = $stmtDashboard->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -107,7 +109,7 @@
                     <i>📦</i>
                 </div>
                 <div class="texto-resumo">
-                    <h2><?= count($estoques) ?></h2>
+                    <h2><?= $dashboard["total_produtos"] ?></h2>
                     <span>Produtos cadastrados</span>
                 </div>
             </div>
@@ -116,7 +118,7 @@
                     <i class="fa-solid fa-money-bill financeiro"></i>
                 </div>
                 <div class="texto-resumo">
-                    <h2><?= number_format($totalEstoque, 2, ',', '.') ?></h2>
+                    <h2><?= number_format($dashboard["valor_estoque"] ?? 0, 2, ',', '.') ?></h2>
                     <span>Valor do estoque</span>
                 </div>
             </div>

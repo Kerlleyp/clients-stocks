@@ -29,6 +29,8 @@
     ]);
 
     $maisVendidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $produtoTop = $maisVendidos[0] ?? null;
+    $total = $produtoTop["total_vendido"] * $produtoTop["preco"]
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +45,43 @@
 <body>
     <?php require_once('templates/header.php') ?>
     <main  class="page-list">
-        <h2 class="title-list">📊 Relatórios</h2>
+        <h2 class="title-list">📊 Produtos em Destaque</h2>
         <p class="separador">Visualize os produtos mais vendidos no estoque.</p>
+        <div class="dashboard">
+            <div class="card-dashboard">
+                <div class="icone-resumo estoques">
+                    <i>🏆</i>
+                </div>
+                <div class="texto-resumo">
+                    <h2>
+                        <?= $produtoTop["nome"] ?? "Nenhum" ?>
+                    </h2>
+                    <span>Produto mais vendido</span>
+                </div>
+            </div>
+            <div class="card-dashboard">
+                <div class="icone-resumo estoques">
+                    <i>💰</i>
+                </div>
+                <div class="texto-resumo">
+                    <h2>
+                        <?= $produtoTop ? $produtoTop["total_vendido"] : 0 ?>
+                    </h2>
+                    <span>Quantidade vendida</span>
+                </div>
+            </div>
+            <div class="card-dashboard">
+                <div class="icone-resumo estoques">
+                    <i class="fa-solid fa-money-bill financeiro"></i>
+                </div>
+                <div class="texto-resumo">
+                    <h2>
+                        <?= $total ?>
+                    </h2>
+                    <span>Preço total vendido</span>
+                </div>
+            </div>
+        </div>
         <div class="list-card">
             <div class="topo-tabela">
                 <div class="topo-direita">
@@ -62,10 +99,10 @@
                 </tr>
                 <?php foreach($maisVendidos as $maisVendas): ?> 
                     <tr class="table-cor">
-                        <td><?= $maisVendas["nome"] ?></td>
-                        <td><?= $maisVendas["marca"] ?></td>
-                        <td><?= $maisVendas["descricao"] ?></td>
-                        <td><?= $maisVendas["total_vendido"] ?></td>
+                        <td><?= htmlspecialchars($maisVendas["nome"]) ?></td>
+                        <td><?= htmlspecialchars($maisVendas["marca"]) ?></td>
+                        <td><?= htmlspecialchars($maisVendas["descricao"]) ?></td>
+                        <td><?= htmlspecialchars($maisVendas["total_vendido"]) ?></td>
                         <td><?= 'R$ ' . number_format($maisVendas["preco"], 2, ',', '.') ?></td>
                     </tr>
                 <?php endforeach; ?> 

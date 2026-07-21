@@ -79,6 +79,14 @@ if ($pesquisa == "") {
     $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $totalClientes = $stmtClientes->fetch(PDO::FETCH_ASSOC);
 
+    $stmtValor = $conn->prepare("SELECT SUM(total) AS valor_total FROM compras WHERE usuario_id = :usuario_id");
+
+    $stmtValor->bindParam(":usuario_id", $usuario_id);
+
+    $stmtValor->execute();
+
+    $valorCompras = $stmtValor->fetch(PDO::FETCH_ASSOC);
+
     $stmtTotal = $conn->prepare("
         SELECT COUNT(DISTINCT compras.id) AS total
 
@@ -233,7 +241,16 @@ $totalDaCompra = 0;
                 </div>
                 <div class="texto-resumo">
                     <h2><?= $totalClientes['total_clientes'] ?></h2>
-                    <span>Compras cadastradas</span>
+                    <span>Clientes</span>
+                </div>
+            </div>
+            <div class="card-dashboard">
+                <div class="icone-resumo clientes">
+                    <i class="fa-solid fa-money-bill financeiro"></i>
+                </div>
+                <div class="texto-resumo">
+                    <h2><?= number_format($valorCompras["valor_total"] ?? 0, 2, ',', '.') ?></h2>
+                    <span>Total das Compras</span>
                 </div>
             </div>
         </div>
