@@ -33,6 +33,7 @@ if ($pesquisa == "") {
             estoque.id AS produto_id,
             estoque.nome AS produto_nome,
             estoque.preco,
+            itens_compra.id AS item_compra_id,
             SUM(itens_compra.quantidade) AS quantidade_total
 
         FROM compras
