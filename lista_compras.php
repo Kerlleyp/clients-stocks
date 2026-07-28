@@ -317,6 +317,9 @@ $totalDaCompra = 0;
                                 <a class="btn excluir" href="compras/excluir_compra.php?id=<?= $compra['compra_id'] ?>">
                                     <i class="fa-solid fa-trash"></i> Excluir
                                 </a>
+                                <a href="compras/editar_compra.php?id=<?= $compra['compra_id']; ?>" class="btn editar">
+                                    Editar
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

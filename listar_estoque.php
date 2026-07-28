@@ -105,8 +105,8 @@
         <p class="separador">Gerencie os produtos cadastrados no sistema.</p>
         <div class="dashboard">
             <div class="card-dashboard">
-                <div class="icone-resumo estoques">
-                    <i>📦</i>
+                <div class="icone-resumo clientes">
+                    <i >📦</i>
                 </div>
                 <div class="texto-resumo">
                     <h2><?= $dashboard["total_produtos"] ?></h2>
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="card-dashboard">
-                <div class="icone-resumo estoques">
+                <div class="icone-resumo clientes">
                     <i class="fa-solid fa-money-bill financeiro"></i>
                 </div>
                 <div class="texto-resumo">

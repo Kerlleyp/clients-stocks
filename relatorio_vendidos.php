@@ -49,7 +49,7 @@
         <p class="separador">Visualize os produtos mais vendidos no estoque.</p>
         <div class="dashboard">
             <div class="card-dashboard">
-                <div class="icone-resumo estoques">
+                <div class="icone-resumo clientes">
                     <i>🏆</i>
                 </div>
                 <div class="texto-resumo">
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="card-dashboard">
-                <div class="icone-resumo estoques">
+                <div class="icone-resumo clientes">
                     <i>💰</i>
                 </div>
                 <div class="texto-resumo">
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="card-dashboard">
-                <div class="icone-resumo estoques">
+                <div class="icone-resumo clientes">
                     <i class="fa-solid fa-money-bill financeiro"></i>
                 </div>
                 <div class="texto-resumo">

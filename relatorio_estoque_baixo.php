@@ -100,7 +100,7 @@ $baixo = $stmtBaixo->fetchAll(PDO::FETCH_ASSOC);
     <p class="separador">Visualize os produtos com estoque baixo e crítico.</p>
     <div class="dashboard">
         <div class="card-dashboard">
-            <div class="icone-resumo estoques">
+            <div class="icone-resumo clientes">
                 <i>🟡</i>
             </div>
             <div class="texto-resumo">
@@ -109,7 +109,7 @@ $baixo = $stmtBaixo->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="card-dashboard">
-            <div class="icone-resumo estoques">
+            <div class="icone-resumo clientes">
                 <i>🔴</i>
             </div>
 
