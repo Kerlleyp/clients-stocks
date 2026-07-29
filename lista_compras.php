@@ -9,6 +9,13 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $usuario_id = $_SESSION['usuario_id'];
 
+if (isset($_GET['editar'])) {
+    $editar = $_GET['editar'];
+} else {
+    $editar = null;
+}
+
+
 $pesquisa = "";
 $pagina = 1;
 $limite = 10;
@@ -310,15 +317,33 @@ $totalDaCompra = 0;
                         $totalDaCompra += $total_produto;
                         ?>
 
-                        <tr>
+                        <tr id="item-<?= $compra['item_compra_id']; ?>">
                             <td><?= $compra['produto_nome'] ?></td>
-                            <td><?= $compra['quantidade_total'] ?></td>
+
+                            <?php if ($compra['item_compra_id'] == $editar): ?>
+                                <td>
+                                    <form method="POST" action="compras/editar_item_compra.php">
+                                        <input
+                                            type="number"
+                                            name="novaQuantidade"
+                                            value="<?= $compra['quantidade_total'] ?>">
+                                        <input
+                                            type="hidden"
+                                            name="item_compra_id"
+                                            value="<?= $compra['item_compra_id'] ?>">
+                                    </form>
+                                </td>
+                            <?php else: ?>
+                                <td>
+                                    <?= $compra['quantidade_total'] ?>
+                                </td>
+                            <?php endif; ?>
                             <td>R$ <?= number_format($total_produto, 2, ',', '.') ?></td>
                             <td>
                                 <a class="btn excluir" href="compras/excluir_compra.php?id=<?= $compra['compra_id'] ?>">
                                     <i class="fa-solid fa-trash"></i> Excluir
                                 </a>
-                                <a href="compras/editar_compra.php?id=<?= $compra['compra_id']; ?>" class="btn editar">
+                                <a href="?editar=<?= $compra['item_compra_id']; ?>#item-<?= $compra['item_compra_id']; ?>" class="btn editar">
                                     Editar
                                 </a>
                             </td>
