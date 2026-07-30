@@ -322,7 +322,7 @@ $totalDaCompra = 0;
 
                             <?php if ($compra['item_compra_id'] == $editar): ?>
                                 <td>
-                                    <form method="POST" action="compras/editar_item_compra.php">
+                                    <form method="POST" action="compras/editar_compra.php">
                                         <input
                                             type="number"
                                             name="novaQuantidade"
@@ -331,6 +331,9 @@ $totalDaCompra = 0;
                                             type="hidden"
                                             name="item_compra_id"
                                             value="<?= $compra['item_compra_id'] ?>">
+                                        <button type="submit" class="btn editar">
+                                            Salvar
+                                        </button>
                                     </form>
                                 </td>
                             <?php else: ?>
