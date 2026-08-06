@@ -108,6 +108,11 @@
                         <i class="fa-solid fa-chart-line"></i>
                         Mais vendidos
                     </a>
+
+                    <a href="relatorio_compras.php" class="<?= $paginaAtual == 'relatorio_compras.php' ? 'active-sub' : '' ?>">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        Relatorio de Compras
+                    </a>
                 </div>
             </div>
 
