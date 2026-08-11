@@ -119,6 +119,7 @@
                 <div class="topo-direita">
                     <form method="get">
                         <input type="text" name="pesquisa" placeholder="Buscar Produto...">
+                        <button type="submit" class="btn-novo">Buscar</button>
                     </form>
                 </div>
             </div>
