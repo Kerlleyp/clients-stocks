@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once("db/conexao.php");
+    if (!isset($_SESSION['usuario_id'])) {
+        header("Location: index.php");
+        exit;
+    }
 
 $usuario_id = $_SESSION["usuario_id"];
 

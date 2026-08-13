@@ -1,73 +1,76 @@
 <?php
-    session_start();
-    require_once("db/conexao.php");
+session_start();
+require_once("db/conexao.php");
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: index.php");
+    exit;
+}
 
-    $usuario_id = $_SESSION['usuario_id'];
-    $pesquisa = "";
-    $pagina = 1;
-    $limite = 10;
-    $offset = 0;
+$usuario_id = $_SESSION['usuario_id'];
+$pesquisa = "";
+$pagina = 1;
+$limite = 10;
+$offset = 0;
 
-    if(isset($_GET["pagina"])) {
-        $pagina = intval($_GET["pagina"]);
-    }
+if (isset($_GET["pagina"])) {
+    $pagina = intval($_GET["pagina"]);
+}
 
-    $offset = ($pagina - 1) * $limite;
+$offset = ($pagina - 1) * $limite;
 
-    if(isset($_GET["pesquisa"])) {
-        $pesquisa = trim($_GET["pesquisa"]);
-    }
+if (isset($_GET["pesquisa"])) {
+    $pesquisa = trim($_GET["pesquisa"]);
+}
 
-    if($pesquisa === "") {
+if ($pesquisa === "") {
 
-        $stmt = $conn->prepare(" SELECT * FROM clientes WHERE  usuario_id = :usuario_id LIMIT :limite OFFSET :offset");
+    $stmt = $conn->prepare(" SELECT * FROM clientes WHERE  usuario_id = :usuario_id LIMIT :limite OFFSET :offset");
 
-        $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM clientes WHERE usuario_id = :usuario_id");
+    $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM clientes WHERE usuario_id = :usuario_id");
 
-        $stmt->bindParam(":usuario_id", $usuario_id);
-        $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
-        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+    $stmt->bindParam(":usuario_id", $usuario_id);
+    $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+    $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
 
-        $stmtTotal->bindParam(":usuario_id", $usuario_id);
+    $stmtTotal->bindParam(":usuario_id", $usuario_id);
 
-        $stmt->execute();
-        $stmtTotal->execute();
+    $stmt->execute();
+    $stmtTotal->execute();
 
-        $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
 
-    } else {
+    $stmt = $conn->prepare("SELECT * FROM clientes WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR telefone LIKE :pesquisa OR endereco LIKE :pesquisa) LIMIT :limite OFFSET :offset");
+    $pesquisa = '%' . $pesquisa . '%';
 
-        $stmt = $conn->prepare("SELECT * FROM clientes WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR telefone LIKE :pesquisa OR endereco LIKE :pesquisa) LIMIT :limite OFFSET :offset");
-        $pesquisa = '%' . $pesquisa . '%';
+    $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM clientes WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR telefone LIKE :pesquisa OR endereco LIKE :pesquisa)");
 
-        $stmtTotal = $conn->prepare("SELECT COUNT(*) AS total FROM clientes WHERE usuario_id = :usuario_id AND ( nome LIKE :pesquisa OR telefone LIKE :pesquisa OR endereco LIKE :pesquisa)");
+    $stmt->bindParam(":pesquisa", $pesquisa);
+    $stmt->bindParam(":usuario_id", $usuario_id);
+    $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+    $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
 
-        $stmt->bindParam(":pesquisa", $pesquisa);
-        $stmt->bindParam(":usuario_id", $usuario_id);
-        $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
-        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
+    $stmtTotal->bindParam(":usuario_id", $usuario_id);
+    $stmtTotal->bindParam(":pesquisa", $pesquisa);
 
-        $stmtTotal->bindParam(":usuario_id", $usuario_id);
-        $stmtTotal->bindParam(":pesquisa", $pesquisa);
+    $stmt->execute();
+    $stmtTotal->execute();
 
-        $stmt->execute();
-        $stmtTotal->execute();
+    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-        $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    }
-    
-    $totalProdutos = $stmtTotal->fetch(PDO::FETCH_ASSOC);
-    $totalPaginas = ceil($totalProdutos["total"] / $limite);
+$totalProdutos = $stmtTotal->fetch(PDO::FETCH_ASSOC);
+$totalPaginas = ceil($totalProdutos["total"] / $limite);
 
-    if($totalPaginas < 1) {
-        $totalPaginas = 1;
-    }
+if ($totalPaginas < 1) {
+    $totalPaginas = 1;
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,26 +78,27 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
     <?php require_once('templates/header.php') ?>
-    <?php if(isset($_SESSION['success'])): ?>
+    <?php if (isset($_SESSION['success'])): ?>
         <div class="success">
-            <?php 
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
+            <?php
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
             ?>
         </div>
     <?php endif; ?>
 
-    <?php if(isset($_SESSION['error'])): ?>
+    <?php if (isset($_SESSION['error'])): ?>
         <div class="error">
-            <?php 
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
+            <?php
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
             ?>
         </div>
     <?php endif; ?>
-    <main  class="page-list">
+    <main class="page-list">
         <h2 class="title-list "><i class="fa-solid fa-users title-icon-client"></i> Clientes</h2>
         <p class="separador">Gerencie os clientes cadastrados no sistema</p>
         <div class="dashboard">
@@ -132,7 +136,7 @@
                     <th><i class="fa-solid fa-gear"></i> Ações</th>
                 </tr>
 
-                <?php foreach($clientes as $cliente): ?>
+                <?php foreach ($clientes as $cliente): ?>
                     <tr class="table-cor">
                         <td>
                             <div class="list-info">
@@ -158,4 +162,5 @@
     </main>
     <?php require_once('templates/footer.php'); ?>
 </body>
+
 </html>
