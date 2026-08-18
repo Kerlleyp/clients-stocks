@@ -2,6 +2,10 @@
 
 session_start();
 require_once("../db/conexao.php");
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: index.php");
+    exit;
+}
 
 if (isset($_POST['item_compra_id'])) {
 

@@ -3,6 +3,11 @@ session_start();
 // Usa a mesma conexão do seu banco de dados que você já configurou
 require_once("../db/conexao.php");
 
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
 // 1. Verificar se o código de recuperação veio na URL do e-mail
 if (!isset($_GET['codigo']) || empty($_GET['codigo'])) {
     die("<p style='color: red; text-align: center; font-family: sans-serif; margin-top: 50px;'>Código de recuperação inválido ou ausente!</p>");
