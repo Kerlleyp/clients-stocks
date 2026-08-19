@@ -75,11 +75,14 @@ if($pesquisa == "") {
         LIMIT :limite OFFSET :offset
     ");
 
+
+
     $stmtBaixo->bindParam(":usuario_id", $usuario_id);
     $stmtBaixo->bindParam(":pesquisa", $pesquisa);
     $stmtBaixo->bindParam(":limite", $limite, PDO::PARAM_INT);
     $stmtBaixo->bindParam(":offset", $offset, PDO::PARAM_INT);
 
+    
 }
 
 
@@ -179,6 +182,7 @@ $baixo = $stmtBaixo->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             <?php endforeach; ?>
         </table>
+
     </div>
 </main>
     <?php require_once('templates/footer.php'); ?>

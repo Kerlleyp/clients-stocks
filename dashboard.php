@@ -140,6 +140,7 @@
             <div class="btn-container">
                 <a href="relatorio_estoque_baixo.php" class="btn-card" id="report">Estoque Baixo</a>
                 <a href="relatorio_vendidos.php" class="btn-card" id="report">Produtos mais Vendidos</a>
+                <a href="relatorio_compras.php" class="btn-card" id="report">Relatorio de Compras</a>
             </div>
         </div>
     </div>

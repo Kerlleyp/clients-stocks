@@ -358,6 +358,24 @@ $totalDaCompra = 0;
                     <?php if ($clienteAtual !== null): ?>
                         </tbody>
                     </table>
+                    <div class="paginacao">
+                        <?php if ($pagina > 1): ?>
+                            <a href="?pagina=<?= $pagina - 1 ?>&pesquisa=<?= $pesquisa ?>" class="pagina-btn">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </a>
+                        <?php endif; ?>
+                        <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                            <a href="?pagina=<?= $i ?>&pesquisa=<?= $pesquisa ?>"
+                                class="pagina-btn <?= ($pagina == $i) ? 'ativa' : '' ?>">
+                                <?= $i ?>
+                            </a>
+                        <?php endfor; ?>
+                        <?php if ($pagina < $totalPaginas): ?>
+                            <a href="?pagina=<?= $pagina + 1 ?>&pesquisa=<?= $pesquisa ?>" class="pagina-btn">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                        <?php endif; ?>
+                    </div>
                     <p class="total-cliente">
                         Total do cliente: R$ <?= number_format($totalDaCompra, 2, ',', '.') ?>
                     </p>
