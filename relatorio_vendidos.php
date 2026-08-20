@@ -154,7 +154,10 @@ $total = $produtoTop
         <div class="list-card">
             <div class="topo-tabela">
                 <div class="topo-direita">
-                    <input type="text" placeholder="Buscar Produto...">
+                    <form method="get">
+                        <input type="text" name="pesquisa" placeholder="Buscar Produto...">
+                        <button type="submit" class="btn-novo">Buscar</button>
+                    </form>
                 </div>
             </div>
             <!--Mostra os Clientes-->
