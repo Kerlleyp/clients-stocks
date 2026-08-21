@@ -520,9 +520,6 @@ $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="paginacao">
 
-
-                    <!-- ANTERIOR -->
-
                     <?php if ($pagina > 1): ?>
 
                         <a
@@ -534,9 +531,6 @@ $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </a>
 
                     <?php endif; ?>
-
-
-                    <!-- NÚMEROS -->
 
                     <?php for (
                         $i = 1;
@@ -554,9 +548,6 @@ $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php endfor; ?>
 
-
-                    <!-- PRÓXIMA -->
-
                     <?php if ($pagina < $totalPaginas): ?>
 
                         <a
@@ -569,20 +560,15 @@ $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php endif; ?>
 
-
                 </div>
 
             <?php endif; ?>
-
 
         </div>
 
     </main>
 
-
     <?php require_once('templates/footer.php'); ?>
-
-
 </body>
 
 </html>
