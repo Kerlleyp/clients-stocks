@@ -1393,3 +1393,119 @@ a {
 .footer-links a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .user-area {
+        margin-right: 0;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .perfil-container,
+    .page-list,
+    .compras-container {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .body-card {
+        width: 95%;
+        padding: 25px 20px;
+    }
+
+    .body-card h2 {
+        font-size: 32px;
+    }
+
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-dashboard {
+        width: 90%;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+
+    .topo-tabela {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .topo-direita {
+        width: 100%;
+    }
+
+    .topo-direita input {
+        width: 100%;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        display: block;
+    }
+
+    .tabela-compras {
+        min-width: 700px;
+    }
+
+    .compras-card {
+        width: 95%;
+        padding: 25px 20px;
+    }
+
+    .compras-card .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .box-info-compra {
+        grid-template-columns: 1fr;
+    }
+
+    .detalhes-flutuante {
+        width: calc(100% - 30px);
+        right: 15px;
+        top: 80px;
+    }
+
+    .success,
+    .error {
+        width: 90%;
+    }
+
+    .title-list {
+        font-size: 36px;
+    }
+
+    .sub-title {
+        font-size: 28px;
+    }
+
+    footer {
+        padding: 18px 10px;
+    }
+}
