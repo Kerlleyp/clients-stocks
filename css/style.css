@@ -1396,31 +1396,180 @@ a {
 
 @media (max-width: 768px) {
 
-    .nav-container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
     }
 
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
+    body {
+        min-width: 0;
+    }
+
+    main {
         width: 100%;
     }
 
-    .user-area {
-        margin-right: 0;
+    header {
+        padding: 15px 10px;
+    }
+
+    .nav-container {
+        width: 100%;
+        padding: 10px 5px;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .title {
-        font-size: 24px;
+        font-size: 23px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    nav a.active {
+        padding: 8px 10px;
+    }
+
+    .menu > a {
+        padding: 9px 10px;
+        font-size: 14px;
+    }
+
+    .menu-link {
+        min-width: auto;
+    }
+
+    .sub_links {
+        min-width: 210px;
+        left: 50%;
+        transform: translate(-50%, 10px);
+    }
+
+    .menu:hover .sub_links {
+        transform: translate(-50%, 0);
+    }
+
+    .user-area {
+        width: 100%;
+        justify-content: center;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .user-link {
+        gap: 8px;
+    }
+
+    .user-avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .btn-sair-header {
+        margin-left: 5px;
+        padding: 9px 12px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .title-list {
+        font-size: 32px;
+        line-height: 1.2;
+        padding: 0 10px;
+    }
+
+    .sub-title {
+        margin-top: -30px;
+        margin-bottom: 30px;
+        font-size: 25px;
     }
 
     .perfil-container,
     .page-list,
     .compras-container {
         width: 100%;
-        padding: 0 15px;
+        max-width: 100%;
+        padding: 0 12px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .main-container {
+        width: 100%;
+        padding: 15px 10px;
+    }
+
+    .card-container {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+
+    .cards {
+        width: 100%;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .cards img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .btn-container {
+        width: 100%;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-card {
+        width: 100%;
+        max-width: 300px;
+        padding: 14px;
+        box-sizing: border-box;
+    }
+
+    .dashboard {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .card-dashboard {
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+    }
+
+    .card-dashboard h2 {
+        font-size: 36px;
+    }
+
+    .card-dashboard p {
+        font-size: 16px;
     }
 
     .form-grid {
@@ -1429,83 +1578,197 @@ a {
     }
 
     .body-card {
-        width: 95%;
-        padding: 25px 20px;
+        width: 100%;
+        max-width: 550px;
+        padding: 25px 18px;
+        box-sizing: border-box;
     }
 
     .body-card h2 {
-        font-size: 32px;
+        font-size: 30px;
     }
 
-    .dashboard {
-        flex-direction: column;
-        align-items: center;
+    .body-card input,
+    .body-card select,
+    .body-card button {
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    .card-dashboard {
-        width: 90%;
+    .perfil-card {
+        padding: 20px 16px;
+        border-radius: 15px;
     }
 
-    .card-container {
-        grid-template-columns: 1fr;
-        width: 95%;
+    .perfil-topo h1 {
+        font-size: 30px;
+    }
+
+    .perfil-topo p {
+        font-size: 16px;
+    }
+
+    .card-header {
+        gap: 10px;
+    }
+
+    .card-header h2 {
+        font-size: 22px;
+    }
+
+    .card-header p {
+        font-size: 14px;
+    }
+
+    .card-icone {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .list-card {
+        width: 100%;
+        border-radius: 15px;
     }
 
     .topo-tabela {
         flex-direction: column;
         align-items: stretch;
+        gap: 12px;
+        padding: 15px;
     }
 
+    .topo-esquerda,
     .topo-direita {
         width: 100%;
     }
 
     .topo-direita input {
         width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn-novo {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
     }
 
     .table-container {
+        width: 100%;
         overflow-x: auto;
         display: block;
     }
 
     .tabela-compras {
-        min-width: 700px;
+        min-width: 650px;
+    }
+
+    .tabela-compras th,
+    .tabela-compras td {
+        padding: 10px;
+        font-size: 14px;
     }
 
     .compras-card {
-        width: 95%;
-        padding: 25px 20px;
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 16px;
+        margin: 20px auto;
+        border-radius: 18px;
+        box-sizing: border-box;
+    }
+
+    .compras-header {
+        gap: 12px;
+        align-items: center;
+    }
+
+    .compras-header .card-icone {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+
+    .compras-card .card-text h2 {
+        font-size: 23px;
+    }
+
+    .compras-card .card-text p {
+        font-size: 14px;
     }
 
     .compras-card .form-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .box-info-compra {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .detalhes-flutuante {
-        width: calc(100% - 30px);
-        right: 15px;
-        top: 80px;
+    .compras-card .acoes-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .compras-card .acoes-form button,
+    .compras-card .acoes-form a {
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
     }
 
     .success,
     .error {
-        width: 90%;
+        width: calc(100% - 30px);
+        max-width: 500px;
+        box-sizing: border-box;
+        font-size: 16px;
+        padding: 12px;
     }
 
-    .title-list {
-        font-size: 36px;
+    .detalhes-flutuante {
+        width: calc(100% - 24px);
+        max-width: none;
+        right: 12px;
+        left: 12px;
+        top: 15px;
+        padding: 18px;
+        box-sizing: border-box;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
-    .sub-title {
-        font-size: 28px;
+    .paginacao {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 0 10px;
+    }
+
+    .pagina-btn {
+        width: 36px;
+        height: 36px;
     }
 
     footer {
-        padding: 17px 10px;
+        width: 100%;
+        padding: 18px 12px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        margin: 10px 0;
+    }
+
+    .footer-links a {
+        margin: 0 5px;
+        font-size: 14px;
     }
 }
