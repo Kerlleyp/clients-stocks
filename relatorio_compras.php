@@ -516,54 +516,24 @@ $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             </table>
 
-            <?php if ($totalPaginas > 1): ?>
-
-                <div class="paginacao">
-
-                    <?php if ($pagina > 1): ?>
-
-                        <a
-                            href="?pagina=<?= $pagina - 1 ?>&pesquisa=<?= urlencode($pesquisa) ?>"
-                            class="pagina-btn">
-
-                            <i class="fa-solid fa-chevron-left"></i>
-
-                        </a>
-
-                    <?php endif; ?>
-
-                    <?php for (
-                        $i = 1;
-                        $i <= $totalPaginas;
-                        $i++
-                    ): ?>
-
-                        <a
-                            href="?pagina=<?= $i ?>&pesquisa=<?= urlencode($pesquisa) ?>"
-                            class="pagina-btn <?= ($pagina == $i) ? 'ativa' : '' ?>">
-
-                            <?= $i ?>
-
-                        </a>
-
-                    <?php endfor; ?>
-
-                    <?php if ($pagina < $totalPaginas): ?>
-
-                        <a
-                            href="?pagina=<?= $pagina + 1 ?>&pesquisa=<?= urlencode($pesquisa) ?>"
-                            class="pagina-btn">
-
-                            <i class="fa-solid fa-chevron-right"></i>
-
-                        </a>
-
-                    <?php endif; ?>
-
-                </div>
-
-            <?php endif; ?>
-
+            <div class="paginacao">
+                <?php if ($pagina > 1): ?>
+                    <a href="?pagina=<?= $pagina - 1 ?>&pesquisa=<?= $pesquisa ?>" class="pagina-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                <?php endif; ?>
+                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                    <a href="?pagina=<?= $i ?>&pesquisa=<?= $pesquisa ?>"
+                        class="pagina-btn <?= ($pagina == $i) ? 'ativa' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+                <?php if ($pagina < $totalPaginas): ?>
+                    <a href="?pagina=<?= $pagina + 1 ?>&pesquisa=<?= $pesquisa ?>" class="pagina-btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
         </div>
 
     </main>

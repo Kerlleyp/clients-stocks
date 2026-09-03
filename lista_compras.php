@@ -265,7 +265,7 @@ $totalDaCompra = 0;
         <div class="list-card">
             <div class="topo-tabela">
                 <div class="topo-esquerda">
-                    <a href="cliente.php" class="btn-novo">
+                    <a href="compras.php" class="btn-novo">
                         <i class="fa-solid fa-plus"></i> Cadastrar Compras
                     </a>
                 </div>

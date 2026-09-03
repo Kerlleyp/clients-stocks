@@ -61,7 +61,7 @@ if (!isset($_SESSION['usuario_id'])) {
                     </div>
                     <div class="form-grupo">
                         <label for="preco">Preço:</label>
-                        <input type="number" name="preco" placeholder="preço">
+                        <input type="number" name="preco" step="0.01" placeholder="preço">
                     </div>
                 </div>
                 <div class="form-grupo">

@@ -136,6 +136,7 @@ $baixo = $stmtBaixo->fetchAll(PDO::FETCH_ASSOC);
                         placeholder="Buscar Produto..." 
                         value="<?= htmlspecialchars($_GET["pesquisa"] ?? "") ?>"
                     >
+                    <button type="submit" class="btn-novo">Buscar</button>
                 </form>
             </div>
         </div>
