@@ -273,7 +273,7 @@ nav a:hover {
 .btn-sair-header:hover {
     background: rgba(231, 76, 60, 0.12);
     border-color: rgba(231, 76, 60, 0.35);
-    color: #ff7b6d;
+    color: #ff3b25;
     transform: translateY(-1px);
 }
 
